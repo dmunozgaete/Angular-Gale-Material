@@ -32,7 +32,7 @@ module.exports = function(grunt, options) {
                 sourceMap: true
             },
             files :{
-                'dist/angular-gale.min.js': [
+                'dist/angular-gale-material.min.js': [
                     'dist/**/*.js'
                 ]
             }

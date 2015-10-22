@@ -36,8 +36,7 @@ module.exports = function(grunt, options) {
 
         global: {
             src: [
-                'src/gale.js',
-                'src/globals.js'
+                'src/gale-material.js',
             ]
         }
     };

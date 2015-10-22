@@ -12,7 +12,7 @@ module.exports = function(grunt, options) {
     return {
         options: {
             base: 'src/js/components/',
-            module: 'gale.templates',
+            module: 'gale-material.templates',
             singleModule: true,
             useStrict: true,
             htmlmin: {

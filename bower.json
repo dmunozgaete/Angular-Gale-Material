@@ -1,13 +1,14 @@
 {
-  "name": "angular-gale",
+  "name": "angular-gale-material",
   "version": "1.0.0-rc.1",
-  "homepage": "https://github.com/dmunozgaete/angular-gale",
+  "homepage": "https://github.com/dmunozgaete/angular-gale-material",
   "authors": [
     "David Gaete <dmunozgaete@gmail.com> (https://github.com/dmunozgaete)"
   ],
-  "description": "Angular Implementation for the Javascript Client GALE",
+  "description": "Angular Material Components for Angular Gale",
   "main": [
-    "dist/angular-gale.js"
+    "dist/angular-gale-material.js",
+    "dist/angular-gale-material.css"
   ],
   "moduleType": [
     "es6"
@@ -31,7 +32,7 @@
     "package.json"
   ],
   "dependencies": {
-    "angular-ui-router": "0.2.13",
-    "lodash": "~3.10.1"
+    "angular-gale": "~1.0.0-rc.1",
+    "angular-material": "0.11.4"
   }
 }

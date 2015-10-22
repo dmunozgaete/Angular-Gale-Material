@@ -15,7 +15,7 @@ module.exports = function(grunt, options) {
         },
         app1: {
             files: {
-                'dist/angular-gale.js' : ['dist/angular-gale.js']
+                'dist/angular-gale-material.js' : ['dist/angular-gale-material.js']
             },
         }
     };

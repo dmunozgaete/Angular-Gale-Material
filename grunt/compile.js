@@ -13,6 +13,7 @@ module.exports = function(grunt, options) {
         grunt.task.run('concat');
         grunt.task.run('ngAnnotate');
         grunt.task.run('uglify');
+        grunt.task.run('cssmin');
         grunt.task.run('clean:post');
 
     };

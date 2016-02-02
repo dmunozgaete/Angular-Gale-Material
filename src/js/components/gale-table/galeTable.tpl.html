@@ -1,0 +1,35 @@
+<gale-header class="gale-header" layout="row" layout-align="start center" ng-transclude>
+</gale-header>
+
+<div class="loading" ng-if="isLoading">
+    <md-progress-linear md-mode="indeterminate"></md-progress-linear>
+</div>
+
+<gale-body class="gale-body">
+    <gale-row layout="row" class="gale-row" ng-click="onRowClick(item)" layout-align="start center" ng-repeat="item in source track by $index" x="{{$index}}">
+        <gale-cell ng-repeat="formatter in $$formatters" class='gale-cell' y="{{$index}}">
+
+        </gale-cell>
+    </gale-row>
+</gale-body>
+
+<gale-empty class="gale-empty" layout="column" layout-align="center center">
+
+</gale-empty>
+
+<gale-pagination ng-if="pagination && getTotalRows()>0">
+
+    <div>
+        <span>
+            {{from() | number:0}} - {{to() | number:0}} to {{getTotalRows() | number:0}}
+        </span>
+    </div>
+
+    <div>
+        <md-icon ng-click="previousPage()" ng-show="hasPrevious()" md-svg-icon="hardware:keyboard_arrow_left"></md-icon>
+    </div>
+
+    <div>
+        <md-icon ng-click="nextPage()" ng-show="hasNext()" md-svg-icon="hardware:keyboard_arrow_right"></md-icon>
+    </div>
+</gale-pagination>

@@ -1,0 +1,33 @@
+gale-loading {
+    position: fixed;
+    top: 0px;
+    left: 0px;
+    right: 0px;
+    bottom: 0px;
+    z-index: 9999999;
+    background-color: rgba(0, 0, 0, 0.12);
+    display: none !important;
+    &.show {
+        display: flex !important
+    }
+    > gale-center {
+        background-color: rgb(255, 255, 255);
+        padding: 0px 16px 0px 0px;
+        border-radius: 3px;
+        box-shadow: 0 3px 1px -2px rgba(0, 0, 0, 0.2), 0 2px 2px 0 rgba(0, 0, 0, 0.14), 0 1px 5px 0 rgba(0, 0, 0, 0.12);
+        /* layout */
+        box-sizing: border-box;
+        display: -webkit-flex;
+        display: -moz-flex;
+        display: -ms-flexbox;
+        display: flex;
+        /* layout=row */
+        -webkit-flex-direction: row;
+        -ms-flex-direction: row;
+        flex-direction: row;
+        /* layout-align="start center" */
+        -webkit-align-items: center;
+        -ms-flex-align: center;
+        align-items: center;
+    }
+}

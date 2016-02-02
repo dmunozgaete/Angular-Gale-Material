@@ -1,0 +1,7 @@
+{
+"version": 3,
+"mappings": "AAAA,SAAU;EACT,OAAO,EAAE,KAAK;EACd,MAAM,EAAE,CAAC;EACT,UAAU,EAAE,IAAI;EAChB,KAAK,EAAE,IAAI",
+"sources": ["gale-page.scss"],
+"names": [],
+"file": "gale-page.css"
+}

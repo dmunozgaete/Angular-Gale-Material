@@ -1,0 +1,62 @@
+<md-dialog aria-label="dd" class="gale-datepicker-dialog {{config.classToAdd}}">
+
+    <md-dialog-content>
+        <div layout="row">
+            <div flex class="md-primary background resume" layout="column">
+
+                <div class="day" flex="initial">
+                    {{data.selected | amDateFormat: 'dddd'}}
+                </div>
+
+                <div flex layout="column" layout-align="center center" layout-fill>
+                    <div class="month">
+                        {{data.selected | amDateFormat: 'MMMM'}}
+                    </div>
+                    <div class="day">
+                        {{data.selected | amDateFormat: 'D'}}
+                    </div>
+                    <div class="year">
+                        {{data.selected | amDateFormat: 'YYYY'}}
+                    </div>
+                </div>
+
+            </div>
+            <div flex layout="column">
+                <div class="header" flex="initial" layout="row" layout-align="center center">
+                    <div flex="15" layout="row" layout-align="center center">
+
+                        <md-icon ng-click="previousMonth(data.selected);" md-svg-icon="navigation:chevron_left" class="md-primary text"></md-icon>
+
+                    </div>
+                    <div flex layout="row" layout-align="center center" class="month">
+
+                        {{data.selected | amDateFormat: 'MMMM YYYY'}}
+
+                    </div>
+                    <div flex="15" layout="row" layout-align="center center">
+
+                        <md-icon ng-click="nextMonth(data.selected);" md-svg-icon="navigation:chevron_right" class="md-primary text"></md-icon>
+
+                    </div>
+                </div>
+                <md-calendar ng-model="data.selected">
+                </md-calendar>
+            </div>
+        </div>
+
+    </md-dialog-content>
+
+    <md-dialog-actions layout="row">
+        <md-button type="button" class="md-accent" ng-click="today()">
+            Hoy
+        </md-button>
+        <span flex>
+        </span>
+        <md-button type="button" ng-click="cancel()">
+            Cancelar
+        </md-button>
+        <md-button type="button" class="md-raised md-primary" ng-click="save(data.selected)">
+            Aceptar
+        </md-button>
+    </md-dialog-actions>
+</md-dialog>

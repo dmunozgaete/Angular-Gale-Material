@@ -1,0 +1,56 @@
+@import "../../../../css/variables";
+@import "../../../../css/flexbox";
+
+
+gale-select {
+    @include flexbox();
+    @include align-items(flex-end);
+    > input.md-input {
+        cursor: pointer;
+        width: 100%;
+    }
+    > md-icon {
+        right: 6px;
+        position: absolute;
+    }
+    &[disabled] {
+        > input.md-input {
+            cursor: default;
+        }
+    }
+}
+
+md-dialog.gale-collection-dialog {
+    > md-dialog-content {
+        min-width: 350px;
+        min-height: 350px;
+        > gale-collection-dialog-items {
+            > md-list {
+                padding: 0px;
+                > md-list-item {
+                    > button {
+                        padding: 0px;
+                        > div.md-list-item-inner {
+                            > item-template {
+                                padding: 0px 16px;
+                                @include flexbox;
+                                @include align-items(center);
+                            }
+                            &:hover {
+                                background-color: #F5F5F5;
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+    > md-dialog-actions {
+        span {
+            &.flex {
+                opacity: 0.7;
+                font-size: 0.8em;
+            }
+        }
+    }
+}

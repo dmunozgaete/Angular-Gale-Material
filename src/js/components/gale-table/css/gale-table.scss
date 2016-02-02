@@ -1,0 +1,172 @@
+@import "../../../../css/variables";
+@import "../../../../css/flexbox";
+
+/*--------------------------------------------------*/
+
+
+/*  GALE TABLE
+/*--------------------------------------------------*/
+
+gale-table {
+    display: block;
+    margin: 0;
+    min-height: 100%;
+    width: 100%;
+    font-size: 14px;
+    /*
+        GALE HEADER
+    */
+    > gale-header {
+        margin: 0;
+        min-height: 100%;
+        width: 100%;
+        border-bottom: 1px solid #EEE;
+        gale-column {
+            @include flexbox();
+            text-align: left;
+            height: 56px;
+            padding: 0px 8px;
+            overflow: hidden;
+            color: rgba(0, 0, 0, 0.57);
+            /* TEXT SECTION */
+            > div.header {
+                width: 100%;
+                @include flexbox();
+                @include align-items(center);
+                @include justify-content(flex-start);
+                &.custom {}
+                &.alignLeft {
+                    @include justify-content(flex-start);
+                }
+                &.alignRight {
+                    @include justify-content(flex-end);
+                }
+                &.alignCenter {
+                    @include justify-content(center);
+                }
+            }
+            > filterable {
+                width: 100%;
+                @include flexbox();
+                @include align-items(center);
+                > div.header {
+                    @include flexbox();
+                    @include flex-basis(90%);
+                }
+                > div.filter {
+                    cursor: pointer;
+                    @include flexbox();
+                    @include align-items(center);
+                    @include flex-basis(24px);
+                }
+            }
+        }
+    }
+    /*
+        GALE BODY
+    */
+    > gale-body {
+        margin: 0;
+        min-height: 100%;
+        width: 100%;
+        display: inline-block;
+        /*
+            GALE ROW
+        */
+        gale-row {
+            text-align: left;
+            border-bottom: 1px solid #EEE;
+            outline: 0;
+            /*
+                GALE CELL
+            */
+            > gale-cell {
+                color: rgba(0, 0, 0, 0.87);
+                padding: 0px 8px;
+                overflow: hidden;
+                min-height: 48px;
+
+                @include flexbox();
+                @include flex-direction(row);
+                @include align-items(center);
+                
+                &.alignLeft {
+                    @include justify-content(flex-start);
+                }
+                &.alignRight {
+                    @include justify-content(flex-end);
+                }
+                &.alignCenter {
+                    @include justify-content(center);
+                }
+                
+                .thumb {
+                    height: 2.2em;
+                    width: 2.2em;
+                    overflow: hidden;
+                    border-radius: 50%;
+                    margin-left: 0px;
+                    margin-bottom: 0px;
+                    > img {
+                        width: 100%
+                    }
+                }
+            }
+            &:hover {
+                background-color: #F5F5F5;
+            }
+        }
+    }
+    > div.loading {
+        md-progress-linear {
+            margin-top: -5px;
+            margin-bottom: 16px;
+        }
+    }
+    /*
+        PAGINATION
+    */
+    > gale-pagination {
+
+        @include flexbox();
+        @include flex-direction(row);
+        @include align-items(center);
+        @include justify-content(flex-end);
+        @include noselect();
+
+        > div {
+            opacity: 0.54;
+            padding: 16px 8px;
+            min-height: auto;
+            height: auto;
+            font-size: 0.9em;
+            min-width: 24px;
+            > md-icon {
+                margin-top: -3px;
+                outline: none;
+                cursor: pointer;
+            }
+        }
+    }
+    /*
+        WHEN NO RECORDS HAS RETURNED
+    */
+    > gale-empty {
+        padding: 8px;
+        color: rgba(0, 0, 0, 0.57);
+        > gale-empty-data {
+            text-align: center;
+        }
+    }
+    /*
+        WHEN ROW HAS CLICK HANDLER
+    */
+    &.row-click {
+        gale-body {
+            gale-row {
+                cursor: pointer;
+                border-bottom: 1px solid #EEE;
+            }
+        }
+    }
+}

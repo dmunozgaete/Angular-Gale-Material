@@ -1,0 +1,99 @@
+/* 
+    SASS Mixins
+*/
+gale-datepicker {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -moz-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: end;
+  -ms-flex-align: end;
+  -webkit-align-items: flex-end;
+  -moz-align-items: flex-end;
+  align-items: flex-end; }
+  gale-datepicker > input.md-input {
+    cursor: pointer;
+    width: 100%; }
+    gale-datepicker > input.md-input[disabled] {
+      cursor: default; }
+
+md-dialog.gale-datepicker-dialog > md-dialog-content {
+  min-width: 650px;
+  min-height: 300px; }
+  md-dialog.gale-datepicker-dialog > md-dialog-content div.header {
+    height: 48px;
+    -webkit-touch-callout: none;
+    -webkit-user-select: none;
+    -khtml-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none; }
+    md-dialog.gale-datepicker-dialog > md-dialog-content div.header div.month {
+      text-transform: capitalize; }
+    md-dialog.gale-datepicker-dialog > md-dialog-content div.header md-icon {
+      height: 36px;
+      width: 36px;
+      cursor: pointer;
+      outline: none; }
+  md-dialog.gale-datepicker-dialog > md-dialog-content div.resume {
+    -webkit-touch-callout: none;
+    -webkit-user-select: none;
+    -khtml-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none; }
+    md-dialog.gale-datepicker-dialog > md-dialog-content div.resume > div {
+      display: -webkit-box;
+      display: -webkit-flex;
+      display: -moz-flex;
+      display: -ms-flexbox;
+      display: flex;
+      -webkit-box-align: center;
+      -ms-flex-align: center;
+      -webkit-align-items: center;
+      -moz-align-items: center;
+      align-items: center;
+      -webkit-box-pack: center;
+      -ms-flex-pack: center;
+      -webkit-justify-content: center;
+      -moz-justify-content: center;
+      justify-content: center; }
+      md-dialog.gale-datepicker-dialog > md-dialog-content div.resume > div.day {
+        height: 42px;
+        color: #fff;
+        font-size: 1.2em;
+        background-color: rgba(0, 0, 0, 0.2);
+        text-transform: capitalize; }
+      md-dialog.gale-datepicker-dialog > md-dialog-content div.resume > div > div {
+        display: -webkit-box;
+        display: -webkit-flex;
+        display: -moz-flex;
+        display: -ms-flexbox;
+        display: flex;
+        -webkit-box-align: center;
+        -ms-flex-align: center;
+        -webkit-align-items: center;
+        -moz-align-items: center;
+        align-items: center;
+        -webkit-box-pack: center;
+        -ms-flex-pack: center;
+        -webkit-justify-content: center;
+        -moz-justify-content: center;
+        justify-content: center;
+        -webkit-box-direction: normal;
+        -webkit-box-orient: vertical;
+        -webkit-flex-direction: column;
+        -moz-flex-direction: column;
+        -ms-flex-direction: column;
+        flex-direction: column;
+        color: #FFF;
+        font-size: 2em;
+        text-transform: uppercase; }
+        md-dialog.gale-datepicker-dialog > md-dialog-content div.resume > div > div.day {
+          font-size: 8em; }
+  md-dialog.gale-datepicker-dialog > md-dialog-content md-calendar .md-calendar-day-header {
+    background: none;
+    text-transform: uppercase; }
+
+/*# sourceMappingURL=gale-datepicker.css.map */

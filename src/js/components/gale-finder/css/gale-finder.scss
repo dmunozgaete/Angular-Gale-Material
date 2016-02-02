@@ -1,0 +1,98 @@
+/*--------------------------------------------------*/
+
+
+/*  GALE FINDER
+/*--------------------------------------------------*/
+
+gale-finder {
+    position: fixed;
+    top: 20%;
+    left: 20%;
+    right: 20%;
+    border: none;
+    background-color: rgb(247, 247, 247);
+    border-radius: 5px;
+    padding: 4px 8px;
+    box-shadow: 0px 0px 25px rgb(48, 48, 48);
+    color: rgb(73, 73, 73);
+    display: none;
+    z-index: 999999;
+    &.show {
+        display: inline;
+    }
+    div.finder {
+        .close {
+            position: fixed;
+            top: 18%;
+            right: 19%;
+            border: none;
+            padding: 4px;
+            border-radius: 50%;
+            box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.26);
+            cursor: pointer;
+            md-icon {
+                color: #FFF;
+            }
+        }
+        table {
+            width: 100%;
+            td.icon {
+                width: 25px;
+                md-icon {
+                    height: 36px;
+                    width: 36px;
+                }
+            }
+            td.box {
+                > input {
+                    background: rgba(0, 0, 0, 0);
+                    border: none;
+                    width: 98%;
+                    padding: 4px;
+                    color: rgb(74, 74, 74);
+                    outline-color: rgb(255, 255, 255);
+                    font-size: 1.5em;
+                    line-height: 1.2em;
+                }
+            }
+        }
+        div.results {
+            border-top: 1px solid rgb(232, 232, 232);
+            max-height: 400px;
+            overflow: auto;
+            > div {
+                padding: 4px 8px;
+                color: rgb(112, 109, 108);
+                min-height: 45px;
+                border-radius: 4px;
+                div.thumb {
+                    height: 30px;
+                    width: 30px;
+                    margin: 0px;
+                    > img {
+                        width: 100%;
+                    }
+                }
+                div.type {
+                    font-style: italic;
+                    color: rgb(148, 148, 148);
+                    font-size: 0.8em;
+                }
+                div.name {
+                    padding-left: 16px;
+                }
+                &.active,
+                &:hover {
+                    background-color: rgb(215, 215, 215);
+                    cursor: pointer;
+                }
+            }
+        }
+        div.footer {
+            color: rgb(139, 139, 139);
+            font-style: italic;
+            float: right;
+            font-size: 0.8em;
+        }
+    }
+}

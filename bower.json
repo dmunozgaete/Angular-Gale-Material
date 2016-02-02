@@ -33,6 +33,6 @@
   ],
   "dependencies": {
     "angular-gale": "~1.0.0-rc.1",
-    "angular-material": "0.11.4"
+    "angular-material": "1.0.4"
   }
 }

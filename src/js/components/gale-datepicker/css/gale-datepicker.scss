@@ -1,0 +1,67 @@
+@import "../../../../css/variables";
+@import "../../../../css/flexbox";
+
+gale-datepicker {
+    @include flexbox();
+    @include align-items(flex-end);
+    > input.md-input {
+        cursor: pointer;
+        width: 100%;
+        &[disabled] {
+            cursor: default;
+        }
+    }
+}
+
+md-dialog.gale-datepicker-dialog {
+    > md-dialog-content {
+        min-width: 650px;
+        min-height: 300px;
+        div.header {
+            height: 48px;
+            @include noselect();
+            div.month {
+                text-transform: capitalize;
+            }
+            md-icon {
+                height: 36px;
+                width: 36px;
+                cursor: pointer;
+                outline: none;
+            }
+        }
+        div.resume {
+            @include noselect();
+            > div {
+                @include flexbox();
+                @include align-items(center);
+                @include justify-content(center);
+                &.day {
+                    height: 42px;
+                    color: #fff;
+                    font-size: 1.2em;
+                    background-color: rgba(0, 0, 0, 0.2);
+                    text-transform: capitalize;
+                }
+                > div {
+                    @include flexbox();
+                    @include align-items(center);
+                    @include justify-content(center);
+                    @include flex-direction(column);
+                    color: #FFF;
+                    font-size: 2em;
+                    text-transform: uppercase;
+                    &.day {
+                        font-size: 8em;
+                    }
+                }
+            }
+        }
+        md-calendar {
+            .md-calendar-day-header{
+                background: none;
+                text-transform: uppercase;
+            }
+        }
+    }
+}

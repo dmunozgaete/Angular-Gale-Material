@@ -1,0 +1,35 @@
+<md-dialog aria-label="dd" class="gale-collection-dialog {{config.classToAdd}}">
+    <md-toolbar>
+        <div class="md-toolbar-tools">
+            <h2>{{config.title}}</h2>
+            <span flex></span>
+            <md-button class="md-icon-button" ng-click="cancel()">
+                <md-icon md-svg-icon="content:clear" aria-label="Cancelar"></md-icon>
+            </md-button>
+        </div>
+    </md-toolbar>
+    <md-dialog-content>
+
+        <!-- LOADING -->
+        <center ng-if="!data.collection">
+            <br />
+            <br />
+            <br />
+            <md-progress-circular md-mode="indeterminate"></md-progress-circular>
+            <flex-loading layout-fill title="Cargando Colección... " legend="espera..., solo un poco mas">
+            </flex-loading>
+        </center>
+        <!-- CONTENT -->
+        <gale-collection-dialog-items>
+        </gale-collection-dialog-items>
+
+    </md-dialog-content>
+    <md-dialog-actions layout="row">
+        <span flex ng-if="data.collection">
+            {{data.collection.length}} items disponibles
+        </span>
+        <md-button type="button" ng-click="cancel()">
+            Cancelar
+        </md-button>
+    </md-dialog-actions>
+</md-dialog>

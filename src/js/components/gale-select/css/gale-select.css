@@ -1,0 +1,49 @@
+/* 
+    SASS Mixins
+*/
+gale-select {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -moz-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: end;
+  -ms-flex-align: end;
+  -webkit-align-items: flex-end;
+  -moz-align-items: flex-end;
+  align-items: flex-end; }
+  gale-select > input.md-input {
+    cursor: pointer;
+    width: 100%; }
+  gale-select > md-icon {
+    right: 6px;
+    position: absolute; }
+  gale-select[disabled] > input.md-input {
+    cursor: default; }
+
+md-dialog.gale-collection-dialog > md-dialog-content {
+  min-width: 350px;
+  min-height: 350px; }
+  md-dialog.gale-collection-dialog > md-dialog-content > gale-collection-dialog-items > md-list {
+    padding: 0px; }
+    md-dialog.gale-collection-dialog > md-dialog-content > gale-collection-dialog-items > md-list > md-list-item > button {
+      padding: 0px; }
+      md-dialog.gale-collection-dialog > md-dialog-content > gale-collection-dialog-items > md-list > md-list-item > button > div.md-list-item-inner > item-template {
+        padding: 0px 16px;
+        display: -webkit-box;
+        display: -webkit-flex;
+        display: -moz-flex;
+        display: -ms-flexbox;
+        display: flex;
+        -webkit-box-align: center;
+        -ms-flex-align: center;
+        -webkit-align-items: center;
+        -moz-align-items: center;
+        align-items: center; }
+      md-dialog.gale-collection-dialog > md-dialog-content > gale-collection-dialog-items > md-list > md-list-item > button > div.md-list-item-inner:hover {
+        background-color: #F5F5F5; }
+md-dialog.gale-collection-dialog > md-dialog-actions span.flex {
+  opacity: 0.7;
+  font-size: 0.8em; }
+
+/*# sourceMappingURL=gale-select.css.map */

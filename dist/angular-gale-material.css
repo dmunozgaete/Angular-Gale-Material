@@ -6,14 +6,11 @@
  Github:            https://github.com/dmunozgaete/angular-gale-material
 
  Versión:           1.0.0-rc.1
- Build Date:        2016-02-02 16:27:53
+ Build Date:        2015-10-22 1:21:12
 ------------------------------------------------------*/
 
-
-
-/*# sourceMappingURL=flexbox.css.map */
-;/*
-	GALE COMPONENTS
+/*
+  GALE COMPONENTS
  */
 
 .unselectable {
@@ -29,64 +26,96 @@
    user-select: none;
 }
 
+/*--------------------------------------------------*/
+/*  GALE PAGE
+/*--------------------------------------------------*/
+gale-page {
+  display: block;
+  margin: 0;
+  min-height: 100%;
+  width: 100%;
+}
+
+/*--------------------------------------------------*/
+/*  GALE ALIGN'S
+/*--------------------------------------------------*/
+
+.alignRight,
+.gale-column > div.alignRight,
+gale-cell.alignRight {
+  text-align: right;
+}
+
+.alignLeft,
+.gale-column > div.alignLeft,
+gale-cell.alignLeft {
+  text-align: left;
+}
+
+.alignCenter,
+.gale-column > div.alignCenter,
+gale-cell.alignCenter {
+  text-align: center;
+}
+
 
 /*--------------------------------------------------*/
 /*  GALE TABLE
 /*--------------------------------------------------*/
 .gale-table {
-	display: inline-block;
-	margin: 0;
-	min-height: 100%;
-	width: 100%;
-	font-size: 14px;
+  display: inline-block;
+  margin: 0;
+  min-height: 100%;
+  width: 100%;
+  font-size: 14px;
 }
 
 .gale-table > .gale-body,
 .gale-table > .gale-header {
-	margin: 0;
-	min-height: 100%;
-	width: 100%;
+  margin: 0;
+  min-height: 100%;
+  width: 100%;
 }
 
 .gale-table > .gale-body {
-	display: inline-block;
+  display: inline-block;
 }
 
 .gale-table > .gale-header {
-	border-bottom: 1px solid #EEE;
+  border-bottom: 1px solid #EEE;
 }
 
 .gale-table > .gale-empty {
-	padding: 8px;
+  padding: 8px;
     color: rgba(0,0,0,0.57);
 }
 
 .gale-table > .gale-header > .gale-column {
-	display: inline-block;
-	text-align: left;
-	padding: 18px 8px;
-	overflow: hidden;
-	color: rgba(0,0,0,0.57);
+  display: inline-block;
+  text-align: left;
+  padding: 18px 8px;
+  overflow: hidden;
+  color: rgba(0,0,0,0.57);
 
 }
 
 .gale-table > .gale-body > .gale-row {
-	text-align: left;
-	border-bottom: 1px solid #EEE;
-	outline: 0;
+  text-align: left;
+  border-bottom: 1px solid #EEE;
+  outline: 0;
 }
 
 .gale-table.row-click > .gale-body > .gale-row {
-	cursor: pointer;
-	border-bottom: 1px solid #EEE;
+  cursor: pointer;
+  border-bottom: 1px solid #EEE;
 }
 
 .gale-table > .gale-body > .gale-row:hover{
-	background-color: #F5F5F5;
+  background-color: #F5F5F5;
 }
 
 .gale-table > .gale-body > .gale-row > gale-cell{
-	color: rgba(0,0,0,0.87);
+  color: rgba(0,0,0,0.87);
     padding: 0px 8px;
     overflow: hidden;
     min-height: 48px;
@@ -96,202 +125,144 @@
 }
 
 .gale-table > .gale-body > .gale-row .thumb {
-	height: 2.2em;
-	width: 2.2em;
-	overflow: hidden;
-	border-radius: 50%;
-	margin-left: 0px;
-	margin-bottom: 0px;
+  height: 2.2em;
+  width: 2.2em;
+  overflow: hidden;
+  border-radius: 50%;
+  margin-left: 0px;
+  margin-bottom: 0px;
 }
 
 .gale-table > .gale-body > .gale-row .thumb > img{
-	width: 100%
+  width: 100%
 }
 
 .gale-table > .gale-body > div.loading md-progress-linear {
-	margin-top: -5px;
-	margin-bottom: 16px;
-};/* 
-    SASS Mixins
-*/
+  margin-top: -5px;
+  margin-bottom: 16px;
+}
 
-/*# sourceMappingURL=variables.css.map */
-;/* 
-    SASS Mixins
-*/
-gale-datepicker {
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -moz-flex;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-align: end;
-  -ms-flex-align: end;
-  -webkit-align-items: flex-end;
-  -moz-align-items: flex-end;
-  align-items: flex-end; }
-  gale-datepicker > input.md-input {
-    cursor: pointer;
-    width: 100%; }
-    gale-datepicker > input.md-input[disabled] {
-      cursor: default; }
-
-md-dialog.gale-datepicker-dialog > md-dialog-content {
-  min-width: 650px;
-  min-height: 300px; }
-  md-dialog.gale-datepicker-dialog > md-dialog-content div.header {
-    height: 48px;
-    -webkit-touch-callout: none;
-    -webkit-user-select: none;
-    -khtml-user-select: none;
-    -moz-user-select: none;
-    -ms-user-select: none;
-    user-select: none; }
-    md-dialog.gale-datepicker-dialog > md-dialog-content div.header div.month {
-      text-transform: capitalize; }
-    md-dialog.gale-datepicker-dialog > md-dialog-content div.header md-icon {
-      height: 36px;
-      width: 36px;
-      cursor: pointer;
-      outline: none; }
-  md-dialog.gale-datepicker-dialog > md-dialog-content div.resume {
-    -webkit-touch-callout: none;
-    -webkit-user-select: none;
-    -khtml-user-select: none;
-    -moz-user-select: none;
-    -ms-user-select: none;
-    user-select: none; }
-    md-dialog.gale-datepicker-dialog > md-dialog-content div.resume > div {
-      display: -webkit-box;
-      display: -webkit-flex;
-      display: -moz-flex;
-      display: -ms-flexbox;
-      display: flex;
-      -webkit-box-align: center;
-      -ms-flex-align: center;
-      -webkit-align-items: center;
-      -moz-align-items: center;
-      align-items: center;
-      -webkit-box-pack: center;
-      -ms-flex-pack: center;
-      -webkit-justify-content: center;
-      -moz-justify-content: center;
-      justify-content: center; }
-      md-dialog.gale-datepicker-dialog > md-dialog-content div.resume > div.day {
-        height: 42px;
-        color: #fff;
-        font-size: 1.2em;
-        background-color: rgba(0, 0, 0, 0.2);
-        text-transform: capitalize; }
-      md-dialog.gale-datepicker-dialog > md-dialog-content div.resume > div > div {
-        display: -webkit-box;
-        display: -webkit-flex;
-        display: -moz-flex;
-        display: -ms-flexbox;
-        display: flex;
-        -webkit-box-align: center;
-        -ms-flex-align: center;
-        -webkit-align-items: center;
-        -moz-align-items: center;
-        align-items: center;
-        -webkit-box-pack: center;
-        -ms-flex-pack: center;
-        -webkit-justify-content: center;
-        -moz-justify-content: center;
-        justify-content: center;
-        -webkit-box-direction: normal;
-        -webkit-box-orient: vertical;
-        -webkit-flex-direction: column;
-        -moz-flex-direction: column;
-        -ms-flex-direction: column;
-        flex-direction: column;
-        color: #FFF;
-        font-size: 2em;
-        text-transform: uppercase; }
-        md-dialog.gale-datepicker-dialog > md-dialog-content div.resume > div > div.day {
-          font-size: 8em; }
-  md-dialog.gale-datepicker-dialog > md-dialog-content md-calendar .md-calendar-day-header {
-    background: none;
-    text-transform: uppercase; }
-
-/*# sourceMappingURL=gale-datepicker.css.map */
-;/*--------------------------------------------------*/
+/*--------------------------------------------------*/
 /*  GALE FINDER
 /*--------------------------------------------------*/
+
 gale-finder {
   position: fixed;
   top: 20%;
   left: 20%;
   right: 20%;
   border: none;
-  background-color: #f7f7f7;
+  background-color: rgb(247, 247, 247);
   border-radius: 5px;
   padding: 4px 8px;
-  box-shadow: 0px 0px 25px #303030;
-  color: #494949;
+  box-shadow: 0px 0px 25px rgb(48, 48, 48);
+  color: rgb(73, 73, 73);
   display: none;
-  z-index: 999999; }
-  gale-finder.show {
-    display: inline; }
-  gale-finder div.finder .close {
-    position: fixed;
-    top: 18%;
-    right: 19%;
-    border: none;
-    padding: 4px;
-    border-radius: 50%;
-    box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.26);
-    cursor: pointer; }
-    gale-finder div.finder .close md-icon {
-      color: #FFF; }
-  gale-finder div.finder table {
-    width: 100%; }
-    gale-finder div.finder table td.icon {
-      width: 25px; }
-      gale-finder div.finder table td.icon md-icon {
-        height: 36px;
-        width: 36px; }
-    gale-finder div.finder table td.box > input {
-      background: transparent;
-      border: none;
-      width: 98%;
-      padding: 4px;
-      color: #4a4a4a;
-      outline-color: white;
-      font-size: 1.5em;
-      line-height: 1.2em; }
-  gale-finder div.finder div.results {
-    border-top: 1px solid #e8e8e8;
-    max-height: 400px;
-    overflow: auto; }
-    gale-finder div.finder div.results > div {
-      padding: 4px 8px;
-      color: #706d6c;
-      min-height: 45px;
-      border-radius: 4px; }
-      gale-finder div.finder div.results > div div.thumb {
-        height: 30px;
-        width: 30px;
-        margin: 0px; }
-        gale-finder div.finder div.results > div div.thumb > img {
-          width: 100%; }
-      gale-finder div.finder div.results > div div.type {
-        font-style: italic;
-        color: #949494;
-        font-size: 0.8em; }
-      gale-finder div.finder div.results > div div.name {
-        padding-left: 16px; }
-      gale-finder div.finder div.results > div.active, gale-finder div.finder div.results > div:hover {
-        background-color: #d7d7d7;
-        cursor: pointer; }
-  gale-finder div.finder div.footer {
-    color: #8b8b8b;
-    font-style: italic;
-    float: right;
-    font-size: 0.8em; }
+  z-index: 999999;
+}
 
-/*# sourceMappingURL=gale-finder.css.map */
-;gale-loading {
+gale-finder.show {
+  display: inline;
+}
+
+gale-finder div.finder .close {
+  position: fixed;
+  top: 18%;
+  right: 19%;
+  border: none;
+  padding: 4px;
+  border-radius: 50%;
+  box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.26);
+  cursor: pointer;
+}
+
+gale-finder div.finder .close md-icon {
+  color: #FFF;
+}
+
+gale-finder div.finder table {
+  width: 100%;
+}
+
+gale-finder div.finder table td.icon {
+  width: 25px;
+}
+
+gale-finder div.finder table td.icon md-icon {
+  height: 36px;
+  width: 36px;
+}
+
+gale-finder div.finder table td.box {
+
+}
+
+gale-finder div.finder table td.box > input {
+  background: rgba(0, 0, 0, 0);
+  border: none;
+  width: 98%;
+  padding: 4px;
+  color: rgb(74, 74, 74);
+  outline-color: rgb(255, 255, 255);
+  font-size: 1.5em;
+  line-height: 1.2em;
+}
+
+gale-finder div.finder table td.box{
+
+}
+
+gale-finder div.finder div.results{
+  border-top: 1px solid rgb(232, 232, 232);
+  max-height: 400px;
+  overflow: auto;
+}
+
+gale-finder div.finder div.footer {
+  color: rgb(139, 139, 139);
+  font-style: italic;
+  float: right;
+  font-size: 0.8em;
+}
+
+gale-finder div.finder div.results > div{
+  padding: 4px 8px;
+  color: rgb(112, 109, 108);
+  min-height: 45px;
+  border-radius: 4px;
+}
+
+gale-finder div.finder div.results > div div.thumb {
+  height: 30px;
+  width: 30px;
+  margin: 0px;
+}
+
+gale-finder div.finder div.results > div div.thumb > img{
+  width: 100%;
+}
+
+
+gale-finder div.finder div.results > div div.name {
+  padding-left: 16px;
+}
+
+gale-finder div.finder div.results > div div.type {
+  font-style: italic;
+  color: rgb(148, 148, 148);
+    font-size: 0.8em;
+}
+
+gale-finder div.finder div.results > div.active,
+gale-finder div.finder div.results > div:hover {
+  background-color: rgb(215, 215, 215);
+  cursor: pointer;
+}
+
+/*--------------------------------------------------*/
+/*  GALE LOADING
+/*--------------------------------------------------*/
+gale-loading {
   position: fixed;
   top: 0px;
   left: 0px;
@@ -299,317 +270,38 @@ gale-finder {
   bottom: 0px;
   z-index: 9999999;
   background-color: rgba(0, 0, 0, 0.12);
-  display: none !important; }
-  gale-loading.show {
-    display: flex !important; }
-  gale-loading > gale-center {
-    background-color: white;
-    padding: 0px 16px 0px 0px;
-    border-radius: 3px;
-    box-shadow: 0 3px 1px -2px rgba(0, 0, 0, 0.2), 0 2px 2px 0 rgba(0, 0, 0, 0.14), 0 1px 5px 0 rgba(0, 0, 0, 0.12);
-    /* layout */
-    box-sizing: border-box;
-    display: -webkit-flex;
-    display: -moz-flex;
-    display: -ms-flexbox;
-    display: flex;
-    /* layout=row */
-    -webkit-flex-direction: row;
-    -ms-flex-direction: row;
-    flex-direction: row;
-    /* layout-align="start center" */
-    -webkit-align-items: center;
-    -ms-flex-align: center;
-    align-items: center; }
+  display: none !important;
+}
 
-/*# sourceMappingURL=gale-loading.css.map */
-;gale-page {
-  display: block;
-  margin: 0;
-  min-height: 100%;
-  width: 100%; }
+gale-loading.show {
+  display: flex !important
+}
 
-/*# sourceMappingURL=gale-page.css.map */
-;/* 
-    SASS Mixins
-*/
-gale-select {
-  display: -webkit-box;
+gale-loading > gale-center {
+  background-color: rgb(255, 255, 255);
+  padding: 0px 16px 0px 0px;
+  border-radius: 3px;
+  box-shadow: 0 3px 1px -2px rgba(0, 0, 0, 0.2),0 2px 2px 0 rgba(0, 0, 0, 0.14),0 1px 5px 0 rgba(0, 0, 0, 0.12);
+  
+
+  /* layout */
+  box-sizing: border-box;
   display: -webkit-flex;
   display: -moz-flex;
   display: -ms-flexbox;
   display: flex;
-  -webkit-box-align: end;
-  -ms-flex-align: end;
-  -webkit-align-items: flex-end;
-  -moz-align-items: flex-end;
-  align-items: flex-end; }
-  gale-select > input.md-input {
-    cursor: pointer;
-    width: 100%; }
-  gale-select > md-icon {
-    right: 6px;
-    position: absolute; }
-  gale-select[disabled] > input.md-input {
-    cursor: default; }
 
-md-dialog.gale-collection-dialog > md-dialog-content {
-  min-width: 350px;
-  min-height: 350px; }
-  md-dialog.gale-collection-dialog > md-dialog-content > gale-collection-dialog-items > md-list {
-    padding: 0px; }
-    md-dialog.gale-collection-dialog > md-dialog-content > gale-collection-dialog-items > md-list > md-list-item > button {
-      padding: 0px; }
-      md-dialog.gale-collection-dialog > md-dialog-content > gale-collection-dialog-items > md-list > md-list-item > button > div.md-list-item-inner > item-template {
-        padding: 0px 16px;
-        display: -webkit-box;
-        display: -webkit-flex;
-        display: -moz-flex;
-        display: -ms-flexbox;
-        display: flex;
-        -webkit-box-align: center;
-        -ms-flex-align: center;
-        -webkit-align-items: center;
-        -moz-align-items: center;
-        align-items: center; }
-      md-dialog.gale-collection-dialog > md-dialog-content > gale-collection-dialog-items > md-list > md-list-item > button > div.md-list-item-inner:hover {
-        background-color: #F5F5F5; }
-md-dialog.gale-collection-dialog > md-dialog-actions span.flex {
-  opacity: 0.7;
-  font-size: 0.8em; }
+  /* layout=row */
+  -webkit-flex-direction: row;
+  -ms-flex-direction: row;
+  flex-direction: row;
 
-/*# sourceMappingURL=gale-select.css.map */
-;/* 
-    SASS Mixins
-*/
-/*--------------------------------------------------*/
-/*  GALE TABLE
-/*--------------------------------------------------*/
-gale-table {
-  display: block;
-  margin: 0;
-  min-height: 100%;
-  width: 100%;
-  font-size: 14px;
-  /*
-      GALE HEADER
-  */
-  /*
-      GALE BODY
-  */
-  /*
-      PAGINATION
-  */
-  /*
-      WHEN NO RECORDS HAS RETURNED
-  */
-  /*
-      WHEN ROW HAS CLICK HANDLER
-  */ }
-  gale-table > gale-header {
-    margin: 0;
-    min-height: 100%;
-    width: 100%;
-    border-bottom: 1px solid #EEE; }
-    gale-table > gale-header gale-column {
-      display: -webkit-box;
-      display: -webkit-flex;
-      display: -moz-flex;
-      display: -ms-flexbox;
-      display: flex;
-      text-align: left;
-      height: 56px;
-      padding: 0px 8px;
-      overflow: hidden;
-      color: rgba(0, 0, 0, 0.57);
-      /* TEXT SECTION */ }
-      gale-table > gale-header gale-column > div.header {
-        width: 100%;
-        display: -webkit-box;
-        display: -webkit-flex;
-        display: -moz-flex;
-        display: -ms-flexbox;
-        display: flex;
-        -webkit-box-align: center;
-        -ms-flex-align: center;
-        -webkit-align-items: center;
-        -moz-align-items: center;
-        align-items: center;
-        -webkit-box-pack: start;
-        -ms-flex-pack: start;
-        -webkit-justify-content: flex-start;
-        -moz-justify-content: flex-start;
-        justify-content: flex-start; }
-        gale-table > gale-header gale-column > div.header.alignLeft {
-          -webkit-box-pack: start;
-          -ms-flex-pack: start;
-          -webkit-justify-content: flex-start;
-          -moz-justify-content: flex-start;
-          justify-content: flex-start; }
-        gale-table > gale-header gale-column > div.header.alignRight {
-          -webkit-box-pack: end;
-          -ms-flex-pack: end;
-          -webkit-justify-content: flex-end;
-          -moz-justify-content: flex-end;
-          justify-content: flex-end; }
-        gale-table > gale-header gale-column > div.header.alignCenter {
-          -webkit-box-pack: center;
-          -ms-flex-pack: center;
-          -webkit-justify-content: center;
-          -moz-justify-content: center;
-          justify-content: center; }
-      gale-table > gale-header gale-column > filterable {
-        width: 100%;
-        display: -webkit-box;
-        display: -webkit-flex;
-        display: -moz-flex;
-        display: -ms-flexbox;
-        display: flex;
-        -webkit-box-align: center;
-        -ms-flex-align: center;
-        -webkit-align-items: center;
-        -moz-align-items: center;
-        align-items: center; }
-        gale-table > gale-header gale-column > filterable > div.header {
-          display: -webkit-box;
-          display: -webkit-flex;
-          display: -moz-flex;
-          display: -ms-flexbox;
-          display: flex;
-          -webkit-flex-basis: 90%;
-          -moz-flex-basis: 90%;
-          -ms-flex-preferred-size: 90%;
-          flex-basis: 90%; }
-        gale-table > gale-header gale-column > filterable > div.filter {
-          cursor: pointer;
-          display: -webkit-box;
-          display: -webkit-flex;
-          display: -moz-flex;
-          display: -ms-flexbox;
-          display: flex;
-          -webkit-box-align: center;
-          -ms-flex-align: center;
-          -webkit-align-items: center;
-          -moz-align-items: center;
-          align-items: center;
-          -webkit-flex-basis: 24px;
-          -moz-flex-basis: 24px;
-          -ms-flex-preferred-size: 24px;
-          flex-basis: 24px; }
-  gale-table > gale-body {
-    margin: 0;
-    min-height: 100%;
-    width: 100%;
-    display: inline-block;
-    /*
-        GALE ROW
-    */ }
-    gale-table > gale-body gale-row {
-      text-align: left;
-      border-bottom: 1px solid #EEE;
-      outline: 0;
-      /*
-          GALE CELL
-      */ }
-      gale-table > gale-body gale-row > gale-cell {
-        color: rgba(0, 0, 0, 0.87);
-        padding: 0px 8px;
-        overflow: hidden;
-        min-height: 48px;
-        display: -webkit-box;
-        display: -webkit-flex;
-        display: -moz-flex;
-        display: -ms-flexbox;
-        display: flex;
-        -webkit-box-direction: normal;
-        -webkit-box-orient: horizontal;
-        -webkit-flex-direction: row;
-        -moz-flex-direction: row;
-        -ms-flex-direction: row;
-        flex-direction: row;
-        -webkit-box-align: center;
-        -ms-flex-align: center;
-        -webkit-align-items: center;
-        -moz-align-items: center;
-        align-items: center; }
-        gale-table > gale-body gale-row > gale-cell.alignLeft {
-          -webkit-box-pack: start;
-          -ms-flex-pack: start;
-          -webkit-justify-content: flex-start;
-          -moz-justify-content: flex-start;
-          justify-content: flex-start; }
-        gale-table > gale-body gale-row > gale-cell.alignRight {
-          -webkit-box-pack: end;
-          -ms-flex-pack: end;
-          -webkit-justify-content: flex-end;
-          -moz-justify-content: flex-end;
-          justify-content: flex-end; }
-        gale-table > gale-body gale-row > gale-cell.alignCenter {
-          -webkit-box-pack: center;
-          -ms-flex-pack: center;
-          -webkit-justify-content: center;
-          -moz-justify-content: center;
-          justify-content: center; }
-        gale-table > gale-body gale-row > gale-cell .thumb {
-          height: 2.2em;
-          width: 2.2em;
-          overflow: hidden;
-          border-radius: 50%;
-          margin-left: 0px;
-          margin-bottom: 0px; }
-          gale-table > gale-body gale-row > gale-cell .thumb > img {
-            width: 100%; }
-      gale-table > gale-body gale-row:hover {
-        background-color: #F5F5F5; }
-  gale-table > div.loading md-progress-linear {
-    margin-top: -5px;
-    margin-bottom: 16px; }
-  gale-table > gale-pagination {
-    display: -webkit-box;
-    display: -webkit-flex;
-    display: -moz-flex;
-    display: -ms-flexbox;
-    display: flex;
-    -webkit-box-direction: normal;
-    -webkit-box-orient: horizontal;
-    -webkit-flex-direction: row;
-    -moz-flex-direction: row;
-    -ms-flex-direction: row;
-    flex-direction: row;
-    -webkit-box-align: center;
-    -ms-flex-align: center;
-    -webkit-align-items: center;
-    -moz-align-items: center;
-    align-items: center;
-    -webkit-box-pack: end;
-    -ms-flex-pack: end;
-    -webkit-justify-content: flex-end;
-    -moz-justify-content: flex-end;
-    justify-content: flex-end;
-    -webkit-touch-callout: none;
-    -webkit-user-select: none;
-    -khtml-user-select: none;
-    -moz-user-select: none;
-    -ms-user-select: none;
-    user-select: none; }
-    gale-table > gale-pagination > div {
-      opacity: 0.54;
-      padding: 16px 8px;
-      min-height: auto;
-      height: auto;
-      font-size: 0.9em;
-      min-width: 24px; }
-      gale-table > gale-pagination > div > md-icon {
-        margin-top: -3px;
-        outline: none;
-        cursor: pointer; }
-  gale-table > gale-empty {
-    padding: 8px;
-    color: rgba(0, 0, 0, 0.57); }
-    gale-table > gale-empty > gale-empty-data {
-      text-align: center; }
-  gale-table.row-click gale-body gale-row {
-    cursor: pointer;
-    border-bottom: 1px solid #EEE; }
+  /* layout-align="start center" */
+  -webkit-align-items: center;
+  -ms-flex-align: center;
+  align-items: center;
+}
 
-/*# sourceMappingURL=gale-table.css.map */
+gale-loading > gale-center > md-progress-circular {
+  
+}

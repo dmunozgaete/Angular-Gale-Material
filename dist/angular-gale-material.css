@@ -5,7 +5,7 @@
  Description:       Angular Material Components for Angular Gale
  Github:            https://github.com/dmunozgaete/angular-gale-material
 
- Versión:           1.0.0-rc.1
+ Versión:           0.11.6
  Build Date:        2015-10-22 1:21:12
 ------------------------------------------------------*/
 

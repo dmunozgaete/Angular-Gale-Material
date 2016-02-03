@@ -5,18 +5,28 @@
  Description:       Angular Material Components for Angular Gale
  Github:            https://github.com/dmunozgaete/angular-gale-material
 
- Versión:           0.11.6
- Build Date:        2015-10-22 1:21:12
+ Versión:           1.0.0-rc.7
+ Build Date:        2016-02-03 11:06:04
 ------------------------------------------------------*/
 
 angular.module('gale-material.templates', []).run(['$templateCache', function($templateCache) {
   "use strict";
+  $templateCache.put("gale-datepicker/gale-datepicker-dialog.tpl.html",
+    "<md-dialog aria-label=dd class=\"gale-datepicker-dialog {{config.classToAdd}}\"><md-dialog-content><div layout=row><div flex class=\"md-primary background resume\" layout=column><div class=day flex=initial>{{data.selected | amDateFormat: 'dddd'}}</div><div flex layout=column layout-align=\"center center\" layout-fill><div class=month>{{data.selected | amDateFormat: 'MMMM'}}</div><div class=day>{{data.selected | amDateFormat: 'D'}}</div><div class=year>{{data.selected | amDateFormat: 'YYYY'}}</div></div></div><div flex layout=column><div class=header flex=initial layout=row layout-align=\"center center\"><div flex=15 layout=row layout-align=\"center center\"><md-icon ng-click=previousMonth(data.selected); md-svg-icon=navigation:chevron_left class=\"md-primary text\"></md-icon></div><div flex layout=row layout-align=\"center center\" class=month>{{data.selected | amDateFormat: 'MMMM YYYY'}}</div><div flex=15 layout=row layout-align=\"center center\"><md-icon ng-click=nextMonth(data.selected); md-svg-icon=navigation:chevron_right class=\"md-primary text\"></md-icon></div></div><md-calendar ng-model=data.selected></md-calendar></div></div></md-dialog-content><md-dialog-actions layout=row><md-button type=button class=md-accent ng-click=today()>Hoy</md-button><span flex></span><md-button type=button ng-click=cancel()>Cancelar</md-button><md-button type=button class=\"md-raised md-primary\" ng-click=save(data.selected)>Aceptar</md-button></md-dialog-actions></md-dialog>");
+  $templateCache.put("gale-datepicker/gale-datepicker.tpl.html",
+    "<input readonly ng-disabled=disabled ng-if=!data.displayValue ng-click=show()> <input readonly ng-disabled=disabled ng-if=data.displayValue value={{data.displayValue}} ng-click=show()>");
   $templateCache.put("gale-finder/directives/galeFinder.tpl.html",
     "<div class=finder><div class=\"close md-primary background\" ng-click=close()><md-icon md-svg-icon=navigation:close></md-icon></div><table><tr><td class=icon><md-icon md-svg-icon=action:search></md-icon></td><td class=box><input ng-change=search(query) ng-model=query placeholder=\"{{placeholder}}\"></td></tr></table><div ng-if=results class=results><div ng-repeat=\"item in results\" ng-click=select(item) layout=row ng-mouseenter=\"activeIndex = $index\" ng-mouseleave=\"activeIndex = -1\" ng-class=\"{'active': $index == activeIndex}\" layout-align=\"start center\"><div flex=5 class=icon><div class=thumb><img ng-src=\"{{item.icon}}\"></div></div><div flex class=name>{{item.name}}<div class=type>{{item.type}}</div></div></div></div><div ng-if=\"results && results.length > 0\" class=footer>{{results.length}} resultados</div></div>");
   $templateCache.put("gale-loading/directives/galeLoading.tpl.html",
     "<gale-center class=\"layout-row layout-align-start-center\"><md-progress-circular class=md-hue-2 md-mode=indeterminate></md-progress-circular><gale-text></gale-text></gale-center>");
-  $templateCache.put("gale-table/directives/galeTable.tpl.html",
-    "<gale-header class=gale-header layout=row layout-align=\"start center\" ng-transclude></gale-header><div class=loading ng-if=isLoading><md-progress-linear md-mode=indeterminate></md-progress-linear></div><gale-body class=gale-body><gale-row layout=row class=gale-row ng-click=onRowClick(item) layout-align=\"start center\" ng-repeat=\"item in source\" x={{$index}} formatters=$$formatters item=item></gale-row></gale-body><gale-empty class=gale-empty layout=column layout-align=\"center center\"></gale-empty>");
+  $templateCache.put("gale-select/gale-collection-dialog.tpl.html",
+    "<md-dialog aria-label=dd class=\"gale-collection-dialog {{config.classToAdd}}\"><md-toolbar><div class=md-toolbar-tools><h2>{{config.title}}</h2><span flex></span><md-button class=md-icon-button ng-click=cancel()><md-icon md-svg-icon=content:clear aria-label=Cancelar></md-icon></md-button></div></md-toolbar><md-dialog-content><center ng-if=!data.collection><br><br><br><md-progress-circular md-mode=indeterminate></md-progress-circular><flex-loading layout-fill title=\"Cargando Colección... \" legend=\"espera..., solo un poco mas\"></flex-loading></center><gale-collection-dialog-items></gale-collection-dialog-items></md-dialog-content><md-dialog-actions layout=row><span flex ng-if=data.collection>{{data.collection.length}} items disponibles</span><md-button type=button ng-click=cancel()>Cancelar</md-button></md-dialog-actions></md-dialog>");
+  $templateCache.put("gale-select/gale-select.tpl.html",
+    "<input readonly ng-disabled=disabled ng-if=!data.displayValue ng-click=show()> <input readonly ng-disabled=disabled ng-if=data.displayValue value={{data.displayValue}} ng-click=show()><md-icon ng-if=!disabled md-svg-icon=navigation:arrow_drop_down class=\"md-primary text\"></md-icon><select-template ng-transclude></select-template>");
+  $templateCache.put("gale-table/galeFilterContainer.tpl.html",
+    "<md-menu><md-button aria-label=filter class=md-icon-button ng-click=\"openMenu($mdOpenMenu, $event)\"><md-icon md-menu-origin md-svg-icon=content:filter_list></md-icon></md-button><md-menu-content width=4 class=\"gale-filter-container popup\" ng-transclude></md-menu-content></md-menu>");
+  $templateCache.put("gale-table/galeTable.tpl.html",
+    "<gale-header class=gale-header layout=row layout-align=\"start center\" ng-transclude></gale-header><div class=loading ng-if=isLoading><md-progress-linear md-mode=indeterminate></md-progress-linear></div><gale-body class=gale-body><gale-row layout=row class=gale-row ng-click=onRowClick(item) layout-align=\"start center\" ng-repeat=\"item in source track by $index\" x={{$index}}><gale-cell ng-repeat=\"formatter in $$formatters\" class=gale-cell y={{$index}}></gale-cell></gale-row></gale-body><gale-empty class=gale-empty layout=column layout-align=\"center center\"></gale-empty><gale-pagination ng-if=\"pagination && getTotalRows()>0\"><div><span>{{from() | number:0}} - {{to() | number:0}} to {{getTotalRows() | number:0}}</span></div><div><md-icon ng-click=previousPage() ng-show=hasPrevious() md-svg-icon=hardware:keyboard_arrow_left></md-icon></div><div><md-icon ng-click=nextPage() ng-show=hasNext() md-svg-icon=hardware:keyboard_arrow_right></md-icon></div></gale-pagination>");
 }]);
 ;angular.manifiest('gale-material', [
     'gale-material.templates',
@@ -75,6 +85,220 @@ angular.module('gale-material.templates', []).run(['$templateCache', function($t
 
     }, 100);
 }]);
+;/*------------------------------------------------------
+ Company:           Valentys Ltda.
+ Author:            David Gaete <dmunozgaete@gmail.com> (https://github.com/dmunozgaete)
+ 
+ Description:       Custom DatePicker Dialog Directive
+ Github:            https://github.com/dmunozgaete/angular-gale
+
+ Versión:           1.0.0-rc.1
+ Build Date:        2016-01-22 3:20:29
+------------------------------------------------------*/
+
+angular.module('gale-material.components')
+
+.directive('galeDatepicker', ['$interpolate', function($interpolate)
+{
+    return {
+        restrict: 'E',
+        require: ['ngModel'],
+        scope:
+        {
+            dateFormat: '@', // Text Value Display
+            ngModel: '=' // Ng-Model
+        },
+        transclude: true,
+        templateUrl: 'gale-datepicker/gale-datepicker.tpl.html',
+        compile: function()
+        {
+            return {             
+                post: function(scope, element, attrs, controller, transcludeFn)
+                {         
+
+                    //Watch Disabled Attr (and ng-disabled too)
+                    attrs.$observe('disabled', function(val)
+                    {
+                        if (val === "")
+                        {
+                            val = true;
+                        }
+                        scope.disabled = val;
+                    });
+
+                }         
+            };
+        },
+        controller: ['$scope', '$element', '$galeDatepickerDialog', '$q', function($scope, $element, $galeDatepickerDialog, $q)
+        {
+            $scope.data = {
+                displayValue: null
+            };
+
+            var focusedClass = "md-input-focused";
+            $scope.show = function(ev)
+            {
+                if ($scope.disabled)
+                {
+                    return;
+                }
+
+                var inputContainer = $element.parent();
+                inputContainer.addClass(focusedClass);
+
+                //DEFER
+                $galeDatepickerDialog.show(ev,
+                {
+                    selected: $scope.ngModel,
+                    classToAdd: $element.attr("class")
+                }).then(function(data)
+                {
+                    // Set
+                    if (data)
+                    {
+                        $scope.ngModel = data;
+                    }
+
+                    inputContainer.removeClass(focusedClass);
+                }, function()
+                {
+                    inputContainer.removeClass(focusedClass);
+                });
+
+            };
+
+            //DATE FORMAT
+            if (!$scope.dateFormat)
+            {
+                $scope.dateFormat = "L";
+            }
+            var displayValueFormat = "{{ item | amDateFormat:'" + $scope.dateFormat + "' }}";
+
+            //HAS VALUE??
+            $scope.$watch("ngModel", function(value)
+            {
+                if (value)
+                {
+                    if (!angular.isDate(value))
+                    {
+                        $scope.ngModel = moment(value).toDate();
+                        return;
+                    }
+
+                    //Load When change (Post Compilation)
+                    $scope.data.displayValue = $interpolate(displayValueFormat)(
+                    {
+                        item: $scope.ngModel
+                    });
+                }
+                else
+                {
+                    //md-input-container
+                    $element.parent().removeClass("md-input-has-placeholder");
+                }
+            });
+
+
+
+        }]
+    };
+}]);;/*------------------------------------------------------
+ Company:           Valentys Ltda.
+ Author:            David Gaete <dmunozgaete@gmail.com> (https://github.com/dmunozgaete)
+ 
+ Description:       DatePicker Dialog Controller
+------------------------------------------------------*/
+(function()
+{
+    angular.module('gale-material.components')
+        .controller('GaleDatepickerDialogController', ['$scope', '$log', '$timeout', '$q', 'config', '$mdDialog', function(
+            $scope,
+            $log,
+            $timeout,
+            $q,
+            config,
+            $mdDialog
+        )
+        {
+            //---------------------------------------------------
+            // Model
+            $scope.config = config;
+            $scope.data = {
+                selected: null
+            };
+
+
+            //Find Selected date (Binding via ngModel)
+
+            $scope.data.selected = config.selected || (new Date());
+
+            $scope.nextMonth = function(date)
+            {
+                $scope.data.selected = moment(date).add(1, "month").toDate();
+            };
+
+            $scope.previousMonth = function(date)
+            {
+                $scope.data.selected = moment(date).subtract(1, "month").toDate();
+            };
+
+            $scope.today = function(date)
+            {
+                $scope.data.selected = new Date();
+            };
+
+            $scope.save = function(date)
+            {
+                $mdDialog.hide(date);
+            };
+
+            $scope.cancel = function()
+            {
+                $mdDialog.hide();
+            };
+        }]);
+
+    // SERVICE
+    angular.module('gale-material.components')
+        .provider('$galeDatepickerDialog', function()
+        {
+            var $ref = this;
+
+            this.$get = ['$log', '$q', '$mdDialog', function($log, $q, $mdDialog)
+            {
+                var self = {};
+
+                //ADD NEW FACTORY
+                self.show = function(ev, config)
+                {
+                    var deferred = $q.defer();
+                    $mdDialog.show(
+                        {
+                            controller: 'GaleDatepickerDialogController',
+                            templateUrl: 'gale-datepicker/gale-datepicker-dialog.tpl.html',
+                            targetEvent: ev,
+                            clickOutsideToClose: true,
+                            focusOnOpen: false,
+                            locals:
+                            {
+                                config: config
+                            }
+                        })
+                        .then(function(data)
+                        {
+                            deferred.resolve(data);
+                        }, function()
+                        {
+                            deferred.reject();
+                        });
+
+                    return deferred.promise;
+                };
+
+                return self;
+            }];
+        });
+})();
 ;angular.module('gale-material.components')
 
 .directive('galeFinder', function() {
@@ -420,55 +644,463 @@ angular.module('gale-material.templates', []).run(['$templateCache', function($t
             });
         }
     };
-});;angular.module('gale-material.components')
+});;/*------------------------------------------------------
+ Company:           Valentys Ltda.
+ Author:            David Gaete <dmunozgaete@gmail.com> (https://github.com/dmunozgaete)
+ 
+ Description:       Custom Select Directive
+ Github:            https://github.com/dmunozgaete/angular-gale
 
-.directive('galeColumn', function() {
+ Versión:           1.0.0-rc.1
+ Build Date:        2016-01-22 3:20:29
+------------------------------------------------------*/
+
+angular.module('gale-material.components')
+
+.directive('galeSelect', ['$interpolate', function($interpolate)
+{
+    return {
+        restrict: 'E',
+        require: ['ngModel'],
+        scope:
+        {
+            itemText: '@', // Text Value Display
+            ngModel: '=', // Ng-Model
+            items: '&' // Items Expression
+        },
+        transclude: true,
+        templateUrl: 'gale-select/gale-select.tpl.html',
+        compile: function()
+        {
+            return {             
+                post: function(scope, element, attrs, controller, transcludeFn)
+                {         
+
+                    //Check Items Exists
+                    if (!angular.isDefined(attrs.items))
+                    {
+                        throw {
+                            error: "ITEMS_NOT_DEFINED"
+                        };
+                    }
+
+                    //Watch Disabled Attr (and ng-disabled too)
+                    attrs.$observe('disabled', function(val)
+                    {
+                        if (val === "")
+                        {
+                            val = true;
+                        }
+                        scope.disabled = val;
+                    });
+
+
+                    //Not render yet from angularJS , so , transform into a Comment Node
+                    var templates = element.find("select-template");
+                    templates.html("<!--" + templates.html().trim() + "-->");
+
+                }         
+            };
+        },
+        controller: ['$scope', '$element', '$galeCollectionDialog', '$q', function($scope, $element, $galeCollectionDialog, $q)
+        {
+            $scope.data = {
+                placeholder: $scope.placeholder,
+                displayValue: null
+            };
+
+            var focusedClass = "md-input-focused";
+            $scope.show = function(ev)
+            {
+                if ($scope.disabled)
+                {
+                    return;
+                }
+                var inputContainer = $element.parent();
+                inputContainer.addClass(focusedClass);
+
+                //Get Template
+                var templateNode = $element.find("select-template");
+                var html = null;
+                if (templateNode.length > 0)
+                {
+                    html = templateNode.html().substring(4);
+                    html = html.substring(0, html.length - 4);
+                }
+
+                //DEFER
+                $galeCollectionDialog.show(ev,
+                {
+                    collection: $scope.items, //Can be a Function Promise
+                    selected: $scope.ngModel,
+                    itemText: $scope.itemText,
+                    title: $scope.placeholder,
+                    classToAdd: $element.attr("class"),
+                    template: html
+                }).then(function(data)
+                {
+                    // Set
+                    if (data)
+                    {
+                        $scope.ngModel = data;
+                    }
+
+                    inputContainer.removeClass(focusedClass);
+                }, function()
+                {
+                    inputContainer.removeClass(focusedClass);
+                });
+
+            };
+
+
+            //Set Placeholder Label (from the input-container, or via placeholder attr)
+            //md-input-container
+            var parent = $element.parent();
+            if (parent.length > 0)
+            {
+                var label = parent.find("label");
+                $scope.placeholder = label.html();
+            }
+            else
+            {
+                $scope.placeholder = $element.attr("placeholder");
+            }
+
+
+            //Wath For Model Change
+            $scope.$watch("ngModel", function(value)
+            {
+                if (value)
+                {
+                    //Load When change (Post Compilation)
+                    $scope.data.displayValue = $interpolate("{{" + $scope.itemText + "}}")(
+                    {
+                        item: $scope.ngModel
+                    });
+                }
+            });
+
+
+
+        }]
+    };
+}]);
+;    /*------------------------------------------------------
+ Company:           Valentys Ltda.
+ Author:            David Gaete <dmunozgaete@gmail.com> (https://github.com/dmunozgaete)
+ 
+ Description:       Collection Dialog Controller
+------------------------------------------------------*/
+(function()
+{
+
+    // SERVICE
+    angular.module('gale-material.components')
+        .provider('$galeCollectionDialog', function()
+        {
+            var $ref = this;
+
+            this.$get = ['$log', '$q', '$mdDialog', function($log, $q, $mdDialog)
+            {
+                var self = {};
+
+                //ADD NEW FACTORY
+                self.show = function(ev, config)
+                {
+                    var deferred = $q.defer();
+                    $mdDialog.show(
+                        {
+                            controller: 'GaleCollectionDialogController',
+                            templateUrl: 'gale-select/gale-collection-dialog.tpl.html',
+                            targetEvent: ev,
+                            clickOutsideToClose: true,
+                            focusOnOpen: false,
+                            locals:
+                            {
+                                config: config
+                            }
+                        })
+                        .then(function(data)
+                        {
+                            deferred.resolve(data);
+                        }, function()
+                        {
+                            deferred.reject();
+                        });
+
+                    return deferred.promise;
+                };
+
+                return self;
+            }];
+        });
+
+    angular.module('gale-material.components')
+        .controller('GaleCollectionDialogController', ['$scope', '$log', '$timeout', '$q', 'config', function(
+            $scope,
+            $log,
+            $timeout,
+            $q,
+            config
+        )
+        {
+            //---------------------------------------------------
+            // Model
+            $scope.config = config;
+            $scope.data = {
+                selected: null
+            };
+
+            var defer = $q.defer();
+            defer.promise.then(function(items)
+            {
+                $scope.data.collection = items;
+
+                //Find Selected in the collection (Binding via ngModel)
+                if (config.selected)
+                {
+                    $scope.data.selected = config.selected;
+                }
+            });
+
+            //Check Data if Array or Promise
+            var collection = config.collection();
+            if (collection && angular.isArray(collection))
+            {
+                //Smooth Delay
+                var delay = $timeout(function()
+                {
+                    // ARRAY
+                    defer.resolve(collection);
+                    $timeout.cancel(delay);
+                }, 350);
+            }
+            else if (collection && collection.then)
+            {
+                //is Promise
+                collection.then(function(collection)
+                {
+                    defer.resolve(collection);
+                }, function(err)
+                {
+                    $log.error(err);
+                    defer.reject();
+                });
+            }
+            else
+            {
+                throw {
+                    error: "GALE_COLLECTION_DIALOG: ITEMS_MUST_BE_ARRAY_OR_PROMISE"
+                };
+            }
+        }]);
+
+
+})();
+;/*------------------------------------------------------
+ Company:           Valentys Ltda.
+ Author:            David Gaete <dmunozgaete@gmail.com> (https://github.com/dmunozgaete)
+ 
+ Description:       Custom Select Directive
+ Github:            https://github.com/dmunozgaete/angular-gale
+
+ Versión:           1.0.0-rc.1
+ Build Date:        2016-01-22 3:20:29
+------------------------------------------------------*/
+
+angular.module('gale-material.components')
+.directive('galeCollectionDialogItems', ['$compile', function($compile)
+{
+    return {
+        restrict: 'E',
+        template: '<md-list></md-list>',
+        compile: function()
+        {
+            return {             
+                pre: function(scope, element, attrs, controller, transcludeFn)
+                {
+
+                    //---------------------------------------------------
+                    // Bind Template Html
+                    var config = scope.config;
+                    var template = null;
+                    if (config.template)
+                    {
+                        template = config.template;
+                    }
+                    else
+                    {
+                        template = '<div class="md-list-item-text">{{' + config.itemText + '}}</div>';
+                    }
+
+                    var fragment = [
+                        "<md-list-item ng-click='select(item)' ng-repeat='item in data.collection'>",
+                        template,
+                        "</md-list-item>"
+                    ].join("");
+
+                    //First md-list 
+                    element.find("md-list").append($compile(fragment)(scope));
+                    //---------------------------------------------------
+
+
+                }         
+            };
+        },
+        controller: ['$scope', '$element', '$compile', '$mdDialog', function($scope, $element, $compile, $mdDialog)
+        {
+
+            //---------------------------------------------------
+            // Bind Template Html
+            $scope.select = function(item)
+            {
+                $mdDialog.hide(item);
+            };
+
+            $scope.cancel = function()
+            {
+                $mdDialog.hide(null);
+            };
+            //---------------------------------------------------
+
+        }]
+    };
+}]);
+;angular.module('gale-material.components')
+
+.directive('galeCell', function()
+{
+    return {
+        restrict: 'E',
+        require: '^galeRow',
+        controller: ['$scope', '$element', '$attrs', '$interpolate', '$compile', function($scope, $element, $attrs, $interpolate, $compile)
+        {
+            //----------------------------------------------------
+            // Reference to Controller Scope
+            var parentScope = $scope.$parent.$parent.$parent;
+            // Create New Scope Inheriting from the parent View Controller
+            var newScope = parentScope.$new();
+            newScope.item = $scope.item;
+            //----------------------------------------------------
+
+
+
+            var formatter = $scope.formatter;
+            var template = "<div>" + formatter.template + "</div>";
+            var cell = $compile(template)(newScope);
+            
+            $element.append(cell);
+            //----------------------------------------------------
+
+            //PROPERTY: WIDTH
+            $element.addClass("flex" + (formatter.width ? "-" + formatter.width : ""));
+
+            //PROPERTY: WIDTH
+            var cls = null;
+            switch (formatter.align)
+            {
+                case "left":
+                    cls = "alignLeft";
+                    break;
+                case "right":
+                    cls = "alignRight";
+                    break;
+                case "center":
+                    cls = "alignCenter";
+                    break;
+            }
+            if (cls)
+            {
+                $element.addClass(cls);
+            }
+
+        }],
+        link: function(scope, element, attrs, ctrl)
+        {
+
+            //PROPERTY: BIND ON CELL CLICK
+            element.bind("click", function(ev)
+            {
+                var $cell = angular.element(this);
+
+                var x = $cell.parent().attr("x");
+                var y = $cell.attr("y");
+
+                //Cell Click    
+                ctrl.getTableController().$$cellClick(ev, scope.item, y, x);
+            });
+
+        }
+    };
+});
+;angular.module('gale-material.components')
+
+.directive('galeColumn', ['$compile', function($compile)
+{
     return {
         restrict: 'E',
         require: '^galeTable',
-        scope: {
-            title         : '@',    // Column Title
-            property      : '@',    // Property to Bind
-            width         : '@',    // Column Width (in %)
-            align         : '@'     // Text Align
+        scope:
+        {
+            title: '@', // Column Title
+            property: '@', // Property to Bind
+            width: '@', // Column Width (in %)
+            filterable: '=', // Can be Filter???
+            filterableType: '=', // Filter Type to show?
+            align: '@' // Text Align
         },
-        transclude: true,   
+        transclude: true,
 
         controller: ['$scope', '$element', '$attrs', function($scope, $element, $attrs) {
-           
+
         }],
 
-        link: function (scope, element, attrs, galeTable, $transclude) {
-            element.addClass("flex" + (scope.width ? "-" + scope.width :""));
+        link: function(scope, element, attrs, galeTable, $transclude)
+        {
+            element.addClass("flex" + (scope.width ? "-" + scope.width : ""));
             element.addClass("gale-column");
-            
-            $transclude( scope, function( fragments ) {
+
+            $transclude(scope, function(fragments)
+            {
                 //--------------------------------------------------------
                 //Try to get header element (CUSTOM)
-                var header = _.find(fragments,function(elm){
+                var header = _.find(fragments, function(elm)
+                {
                     return elm.nodeName.toLowerCase() === "gale-header";
                 });
 
-                if(!header){
-                    header = angular.element("<div>" + (scope.title||"") + "</div>");
-                }else{
+                if (!header)
+                {
+                    header = angular.element("<div class='header'>" + (scope.title || "") + "</div>");
+                }
+                else
+                {
                     header = angular.element(header);
 
                     //IF HAS NG-TEMPLATE (FIX BUG TRANSCLUDE)
                     var hscript = header.find("script");
-                    if(hscript.length >0 ){
+                    if (hscript.length > 0)
+                    {
                         header = hscript;
-                    }else{
+                    }
+                    else
+                    {
                         var htemplate = header.find("template");
-                        if(htemplate.length >0 ){
-                            htemplate = htemplate;
+                        if (htemplate.length > 0)
+                        {
+                            header = htemplate;
                         }
                     }
+
+                    header = $compile("<div class='header custom'>" + header.html() + "</div>")(scope.$parent);
                 }
-                
+
+
                 //PROPERTY: WIDTH
                 var cls = null;
-                switch (scope.align){
+                switch (scope.align)
+                {
                     case "left":
                         cls = "alignLeft";
                         break;
@@ -479,44 +1111,76 @@ angular.module('gale-material.templates', []).run(['$templateCache', function($t
                         cls = "alignCenter";
                         break;
                 }
-                if(cls){
+                if (cls)
+                {
                     header.addClass(cls);
                 }
 
-                //Append the header 
-                element.append( header );    
                 //--------------------------------------------------------
-                
+                // FILTERING! (IF ACTIVATE)
+                if (scope.filterable)
+                {
+
+                    //Build the filter Box
+                    var filter = angular.element("<filterable></filterable>");
+                    filter.append(header);
+
+
+                    //Filter Type
+                    var filterType = ("text" || scope.filterableType);
+                    var popup = $compile("<gale-filter-container><gale-" + filterType + "-filter/></gale-filter-container>")(scope);
+
+
+                    filter.append(popup);
+
+                    //Set the growth object
+                    header = filter;
+                }
+                //--------------------------------------------------------
+
+                //Append the header 
+                element.append(header);
+
                 //--------------------------------------------------------
                 //Try to get item element (CUSTOM)
-                var item = _.find(fragments,function(elm){
+                var item = _.find(fragments, function(elm)
+                {
                     return elm.nodeName.toLowerCase() === "gale-item";
                 });
 
-                if(!item){
+                if (!item)
+                {
                     var html = "";
-                    if(scope.property){
+                    if (scope.property)
+                    {
                         html = "{{item." + scope.property + "}}";
                     }
                     item = angular.element("<div>" + html + "</div>");
-                }else{
+                }
+                else
+                {
                     item = angular.element(item);
 
                     //IF HAS NG-TEMPLATE (FIX BUG TRANSCLUDE)
                     var script = item.find("script");
-                    if(script.length >0 ){
+                    if (script.length > 0)
+                    {
                         item = script;
-                    }else{
+                    }
+                    else
+                    {
                         var template = item.find("template");
-                        if(template.length >0 ){
+                        if (template.length > 0)
+                        {
                             item = template;
                         }
                     }
-                    
+
                 }
 
                 //Append the item 
-                galeTable.$$formatters.push({
+                galeTable.$$formatters.push(
+                {
                     property: scope.property,
                     width: scope.width,
                     align: scope.align,
@@ -526,7 +1190,30 @@ angular.module('gale-material.templates', []).run(['$templateCache', function($t
             });
         }
     };
-});;angular.module('gale-material.components')
+}]);
+;angular.module('gale-material.components')
+
+.directive('galeFilterContainer', function()
+{
+    return {
+        restrict: 'E',
+        scope:
+        {},
+        transclude: true,
+        templateUrl: 'gale-table/galeFilterContainer.tpl.html',
+        controller: ['$scope', '$element', '$interpolate', '$compile', function($scope, $element, $interpolate, $compile)
+        {
+            $scope.openMenu = function($mdOpenMenu, ev)
+            {
+                originatorEv = ev;
+                $mdOpenMenu(ev);
+            };
+        }],
+
+        link: function(scope, element, attrs, ctrl) {}
+    };
+});
+;angular.module('gale-material.components')
 
 .directive('galeItem', function() {
     return {
@@ -539,64 +1226,28 @@ angular.module('gale-material.templates', []).run(['$templateCache', function($t
     };
 });;angular.module('gale-material.components')
 
-.directive('galeRow', ['$compile', '$interpolate', function($compile, $interpolate) {
+.directive('galeRow', ['$compile', '$interpolate', function($compile, $interpolate)
+{
     return {
         restrict: 'E',
-        require: '^galeTable',
+        require: ['^galeTable', 'galeRow'],
         controller: ['$scope', '$element', '$attrs', '$interpolate', '$compile', function($scope, $element, $attrs, $interpolate, $compile) {
-              
+
         }],
-        link: function (scope, element, attrs , ctrl) {
-            angular.forEach(scope.$$formatters, function(formatter, $index){
-
-                var template = "<gale-cell class='gale-cell'>" + formatter.template + "</gale-cell>";
-                var cell = $compile(template)(scope);
-
-                //PROPERTY: WIDTH
-                cell.addClass("flex" + (formatter.width ? "-" + formatter.width :""));
-
-                //PROPERTY: WIDTH
-                var cls = null;
-                switch (formatter.align){
-                    case "left":
-                        cls = "alignLeft";
-                        break;
-                    case "right":
-                        cls = "alignRight";
-                        break;
-                    case "center":
-                        cls = "alignCenter";
-                        break;
-                }
-                if(cls){
-                    cell.addClass(cls);
-                }
-
-                //PROPERTY: ROW INDEX
-                cell.attr("y", $index);
-                
-                //PROPERTY: BIND ON CELL CLICK
-                cell.bind("click", function(ev){
-                    var $cell = angular.element(this);
-
-                    var x = $cell.parent().attr("x");
-                    var y = $cell.attr("y");
-                 
-                    //Cell Click    
-                    ctrl.$$cellClick(ev, scope.item, y, x );
-
-                    /*
-                    ev.stopPropagation();
-                    ev.preventDefault();
-                    return false;
-                    */
-                });
+        link: function(scope, element, attrs, ctrls)
+        {
+            var galeTableController = ctrls[0];
+            var thisControler = ctrls[1];
             
-                element.append(cell);
-            });
+            thisControler.getTableController = function()
+            {
+                return galeTableController;
+            };
+
         }
     };
-}]);;angular.module('gale-material.components')
+}]);
+;angular.module('gale-material.components')
 
 .directive('galeTable', function()
 {
@@ -604,8 +1255,12 @@ angular.module('gale-material.templates', []).run(['$templateCache', function($t
         restrict: 'E',
         scope:
         {
-            paginate: '@', // Paginate the items or not??
-            items: '=', // Object with contains and Array ob Object to render
+            // PAGINATION
+            pagination: '=', // Paginate the items or not??
+            paginationSize: '@',
+
+            //VARIABLES
+            items: '=?', // Object with contains and Array ob Object to render
             endpoint: '@', // OData Endpoint
             showHeader: '@', // Show Header in Table or Not
             rowClick: '&', // Row Click Handler
@@ -613,8 +1268,8 @@ angular.module('gale-material.templates', []).run(['$templateCache', function($t
             name: '@' // gale Table Unique ID
         },
         transclude: true,
-        templateUrl: 'gale-table/directives/galeTable.tpl.html',
-        controller: ['$scope', '$element', '$interpolate', '$compile', '$Api', '$galeTable', 'KQLBuilder', function($scope, $element, $interpolate, $compile, $Api, $galeTable, KQLBuilder)
+        templateUrl: 'gale-table/galeTable.tpl.html',
+        controller: ['$scope', '$element', '$Api', '$galeTable', 'QueryableBuilder', function($scope, $element,$Api, $galeTable, QueryableBuilder)
         {
             this.$$formatters = $scope.$$formatters = []; //Lazy Load Instantation
             var self = this; //Auto reference
@@ -679,36 +1334,99 @@ angular.module('gale-material.templates', []).run(['$templateCache', function($t
             //Manual Bootstrap
             self.setup = function(endpoint, cfg)
             {
-
-                var url = endpoint;
-                if (cfg)
-                {
-                    url = KQLBuilder.build(url, cfg);
-                }
-
                 configuration = cfg ||
                 {}; //Save current configuration
 
-                self.bind(url);
+                pager = self.bind(endpoint);
             };
 
             //Bind to Endpoint
             self.bind = function(endpoint)
             {
-                $scope.isLoading = true;
+                //Pagination Variables
+                var totalRows = 0;
+                var offset = 0;
+                var limit = parseInt(($scope.paginationSize || 10));
 
-                $Api.invoke('GET', endpoint, null, configuration.headers)
-                    .success(function(data)
+                var fetch = function()
+                {
+                    var url = endpoint;
+                    var data = {};
+
+                    if ($scope.pagination)
                     {
+                        //ODATA Conventions
+                        data = {
+                            "$offset": offset,
+                            "$limit": limit
+                        };
+                    }
+                    $scope.isLoading = true;
 
-                        self.render(data, true);
-                        self.$fire("load-complete", [data, unique_id]);
 
-                    })
-                    .finally(function()
+                    // Get Data from Server (POST)
+                    var request = $Api.invoke('GET', url, data, configuration.headers);
+
+                    request
+                        .success(function(data)
+                        {
+                            //UPDATE OFFSET COUNTER
+                            totalRows = data.total;
+                            $scope.items = data.items;
+
+                            self.render(data, true);
+                            self.$fire("load-complete", [data, unique_id]);
+                        })
+                        .finally(function()
+                        {
+                            $scope.isLoading = false;
+                        });
+
+                    return request;
+
+
+                };
+
+
+                //------------------------------------------------------
+                //Call One time (First)
+                fetch();
+                //------------------------------------------------------
+
+                return {
+                    nextPage: function()
                     {
-                        $scope.isLoading = false;
-                    });
+                        offset += limit;
+                        return fetch();
+                    },
+                    previousPage: function()
+                    {
+                        offset -= limit;
+                        return fetch();
+                    },
+                    hasPrevious: function()
+                    {
+                        return offset > 0;
+                    },
+                    hasNext: function()
+                    {
+                        return totalRows > 0 && (offset + limit) < totalRows;
+                    },
+                    totalRows: function()
+                    {
+                        return totalRows;
+                    },
+                    offset: function()
+                    {
+                        return offset;
+                    },
+                    limit: function()
+                    {
+                        return limit;
+                    }
+
+                };
+
             };
 
             //Render table
@@ -726,13 +1444,13 @@ angular.module('gale-material.templates', []).run(['$templateCache', function($t
                 if ($scope.source.length === 0)
                 {
                     //Put the empty-data placeholder into the gale-empty directive
-                    $element.find("gale-empty").append(
+                    $element.find("gale-empty").css("display", "block").append(
                         $element.find("gale-empty-data").css("display", "block")
                     );
                 }
             };
-            //------------------------------------------------------------------------------
 
+            //------------------------------------------------------------------------------
             //Cell Click
             var cellClickHandler = $scope.cellClick();
             self.$$cellClick = function(ev, item, cellIndex, rowIndex)
@@ -755,6 +1473,52 @@ angular.module('gale-material.templates', []).run(['$templateCache', function($t
                 $galeTable.$$unregister(self, unique_id); //UnRegister for Service Interaction
             });
 
+
+            //------------------------------------------------------------------------------
+            // Pagination
+            var pager = null;
+            $scope.getTotalRows = function()
+            {
+                return pager.totalRows();
+            };
+            $scope.nextPage = function()
+            {
+                pager.nextPage();
+            };
+            $scope.previousPage = function()
+            {
+                pager.previousPage();
+            };
+            $scope.from = function()
+            {
+                return (pager.offset()) + 1;
+            };
+            $scope.to = function()
+            {
+                var value = (pager.offset() + pager.limit());
+                if (value > pager.totalRows())
+                {
+                    return pager.totalRows();
+                }
+                return value;
+            };
+            $scope.hasNext = function()
+            {
+                if (!pager)
+                {
+                    return false;
+                }
+                return pager.hasNext();
+            };
+            $scope.hasPrevious = function()
+            {
+                if (!pager)
+                {
+                    return false;
+                }
+                return pager.hasPrevious();
+            };
+            //------------------------------------------------------------------------------
 
             //Register for Service Interaction
             $galeTable.$$register(self, unique_id);
@@ -798,7 +1562,7 @@ angular.module('gale-material.templates', []).run(['$templateCache', function($t
                 element.addClass("row-click");
             }
 
-
+            element.find("gale-empty").css("display", "none");
             element.find("gale-empty-data").css("display", "none");
 
             scope.onRowClick = function(item)

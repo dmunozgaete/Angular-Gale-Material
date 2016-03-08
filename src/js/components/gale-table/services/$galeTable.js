@@ -70,6 +70,11 @@ angular.module('gale-material.components')
         return _getByHandle(uniqueID).setup(endpoint, cfg);
     };
 
+    //Refresh Current Page
+    self.refresh = function(uniqueID){
+        return _getByHandle(uniqueID).refresh();
+    };
+
     self.$on = function(eventName, callback, uniqueID){
         var component = _getByHandle(uniqueID);
         component.$on(eventName, callback);   //

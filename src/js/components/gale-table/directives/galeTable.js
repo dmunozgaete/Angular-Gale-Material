@@ -20,7 +20,7 @@ angular.module('gale-material.components')
         },
         transclude: true,
         templateUrl: 'gale-table/galeTable.tpl.html',
-        controller: function($scope, $element,$Api, $galeTable, QueryableBuilder)
+        controller: function($scope, $element, $Api, $galeTable, QueryableBuilder)
         {
             this.$$formatters = $scope.$$formatters = []; //Lazy Load Instantation
             var self = this; //Auto reference
@@ -91,6 +91,15 @@ angular.module('gale-material.components')
                 pager = self.bind(endpoint);
             };
 
+            //Refresh Current Page if pager is enabled
+            self.refresh = function(endpoint, cfg)
+            {
+                if (pager)
+                {
+                    pager.refresh();
+                }
+            };
+
             //Bind to Endpoint
             self.bind = function(endpoint)
             {
@@ -148,6 +157,10 @@ angular.module('gale-material.components')
                     nextPage: function()
                     {
                         offset += limit;
+                        return fetch();
+                    },
+                    refresh: function()
+                    {
                         return fetch();
                     },
                     previousPage: function()

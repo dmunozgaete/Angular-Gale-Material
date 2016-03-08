@@ -6,7 +6,7 @@
  Github:            https://github.com/dmunozgaete/angular-gale-material
 
  Versión:           1.0.0-rc.7
- Build Date:        2016-02-03 11:06:04
+ Build Date:        2016-03-08 15:21:25
 ------------------------------------------------------*/
 
 angular.module('gale-material.templates', []).run(['$templateCache', function($templateCache) {
@@ -1269,7 +1269,7 @@ angular.module('gale-material.components')
         },
         transclude: true,
         templateUrl: 'gale-table/galeTable.tpl.html',
-        controller: ['$scope', '$element', '$Api', '$galeTable', 'QueryableBuilder', function($scope, $element,$Api, $galeTable, QueryableBuilder)
+        controller: ['$scope', '$element', '$Api', '$galeTable', 'QueryableBuilder', function($scope, $element, $Api, $galeTable, QueryableBuilder)
         {
             this.$$formatters = $scope.$$formatters = []; //Lazy Load Instantation
             var self = this; //Auto reference
@@ -1340,6 +1340,15 @@ angular.module('gale-material.components')
                 pager = self.bind(endpoint);
             };
 
+            //Refresh Current Page if pager is enabled
+            self.refresh = function(endpoint, cfg)
+            {
+                if (pager)
+                {
+                    pager.refresh();
+                }
+            };
+
             //Bind to Endpoint
             self.bind = function(endpoint)
             {
@@ -1397,6 +1406,10 @@ angular.module('gale-material.components')
                     nextPage: function()
                     {
                         offset += limit;
+                        return fetch();
+                    },
+                    refresh: function()
+                    {
                         return fetch();
                     },
                     previousPage: function()
@@ -1650,6 +1663,11 @@ angular.module('gale-material.components')
     //Manual Bootstrapp
     self.setup = function(endpoint, cfg, uniqueID){
         return _getByHandle(uniqueID).setup(endpoint, cfg);
+    };
+
+    //Refresh Current Page
+    self.refresh = function(uniqueID){
+        return _getByHandle(uniqueID).refresh();
     };
 
     self.$on = function(eventName, callback, uniqueID){

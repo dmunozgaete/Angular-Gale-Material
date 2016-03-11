@@ -19,7 +19,8 @@ angular.module('gale-material.components')
         scope:
         {
             dateFormat: '@', // Text Value Display
-            ngModel: '=' // Ng-Model
+            ngModel: '=', // Ng-Model
+            ngChange: '&' //When Data Change
         },
         transclude: true,
         templateUrl: 'gale-datepicker/gale-datepicker.tpl.html',
@@ -44,6 +45,8 @@ angular.module('gale-material.components')
         },
         controller: function($scope, $element, $galeDatepickerDialog, $q)
         {
+            var blockFirstEntry = true;
+
             $scope.data = {
                 displayValue: null
             };
@@ -70,6 +73,7 @@ angular.module('gale-material.components')
                     if (data)
                     {
                         $scope.ngModel = data;
+                        blockFirstEntry = false;
                     }
 
                     inputContainer.removeClass(focusedClass);
@@ -103,6 +107,12 @@ angular.module('gale-material.components')
                     {
                         item: $scope.ngModel
                     });
+
+                    if (!blockFirstEntry && $scope.ngChange)
+                    {
+                        //CALL ON-CHANGE BIND
+                        $scope.ngChange();
+                    }
                 }
                 else
                 {

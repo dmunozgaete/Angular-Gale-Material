@@ -85,6 +85,8 @@ angular.module('gale-material.components')
             //Manual Bootstrap
             self.setup = function(endpoint, cfg)
             {
+                $scope.items = [];
+                
                 configuration = cfg ||
                 {}; //Save current configuration
 
@@ -161,6 +163,7 @@ angular.module('gale-material.components')
                     },
                     refresh: function()
                     {
+                        $scope.items = [];
                         return fetch();
                     },
                     previousPage: function()

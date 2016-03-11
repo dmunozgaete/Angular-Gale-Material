@@ -6,7 +6,7 @@
  Github:            https://github.com/dmunozgaete/angular-gale-material
 
  Versión:           1.0.0-rc.7
- Build Date:        2016-03-08 15:21:25
+ Build Date:        2016-03-09 18:01:42
 ------------------------------------------------------*/
 
 angular.module('gale-material.templates', []).run(['$templateCache', function($templateCache) {
@@ -106,7 +106,8 @@ angular.module('gale-material.components')
         scope:
         {
             dateFormat: '@', // Text Value Display
-            ngModel: '=' // Ng-Model
+            ngModel: '=', // Ng-Model
+            ngChange: '&' //When Data Change
         },
         transclude: true,
         templateUrl: 'gale-datepicker/gale-datepicker.tpl.html',
@@ -131,6 +132,8 @@ angular.module('gale-material.components')
         },
         controller: ['$scope', '$element', '$galeDatepickerDialog', '$q', function($scope, $element, $galeDatepickerDialog, $q)
         {
+            var blockFirstEntry = true;
+
             $scope.data = {
                 displayValue: null
             };
@@ -157,6 +160,7 @@ angular.module('gale-material.components')
                     if (data)
                     {
                         $scope.ngModel = data;
+                        blockFirstEntry = false;
                     }
 
                     inputContainer.removeClass(focusedClass);
@@ -190,6 +194,12 @@ angular.module('gale-material.components')
                     {
                         item: $scope.ngModel
                     });
+
+                    if (!blockFirstEntry && $scope.ngChange)
+                    {
+                        //CALL ON-CHANGE BIND
+                        $scope.ngChange();
+                    }
                 }
                 else
                 {
@@ -202,7 +212,8 @@ angular.module('gale-material.components')
 
         }]
     };
-}]);;/*------------------------------------------------------
+}]);
+;/*------------------------------------------------------
  Company:           Valentys Ltda.
  Author:            David Gaete <dmunozgaete@gmail.com> (https://github.com/dmunozgaete)
  
@@ -1334,6 +1345,8 @@ angular.module('gale-material.components')
             //Manual Bootstrap
             self.setup = function(endpoint, cfg)
             {
+                $scope.items = [];
+                
                 configuration = cfg ||
                 {}; //Save current configuration
 
@@ -1410,6 +1423,7 @@ angular.module('gale-material.components')
                     },
                     refresh: function()
                     {
+                        $scope.items = [];
                         return fetch();
                     },
                     previousPage: function()

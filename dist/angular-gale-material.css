@@ -6,7 +6,7 @@
  Github:            https://github.com/dmunozgaete/angular-gale-material
 
  Versión:           1.0.0-rc.7
- Build Date:        2016-03-09 18:01:42
+ Build Date:        2016-03-18 15:46:54
 ------------------------------------------------------*/
 
 
@@ -604,6 +604,7 @@ gale-table {
         outline: none;
         cursor: pointer; }
   gale-table > gale-empty {
+    display: none;
     padding: 8px;
     color: rgba(0, 0, 0, 0.57); }
     gale-table > gale-empty > gale-empty-data {

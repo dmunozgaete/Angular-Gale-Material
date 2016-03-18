@@ -6,7 +6,7 @@
  Github:            https://github.com/dmunozgaete/angular-gale-material
 
  Versión:           1.0.0-rc.7
- Build Date:        2016-03-09 18:01:42
+ Build Date:        2016-03-18 15:46:54
 ------------------------------------------------------*/
 
 angular.module('gale-material.templates', []).run(['$templateCache', function($templateCache) {
@@ -26,7 +26,7 @@ angular.module('gale-material.templates', []).run(['$templateCache', function($t
   $templateCache.put("gale-table/galeFilterContainer.tpl.html",
     "<md-menu><md-button aria-label=filter class=md-icon-button ng-click=\"openMenu($mdOpenMenu, $event)\"><md-icon md-menu-origin md-svg-icon=content:filter_list></md-icon></md-button><md-menu-content width=4 class=\"gale-filter-container popup\" ng-transclude></md-menu-content></md-menu>");
   $templateCache.put("gale-table/galeTable.tpl.html",
-    "<gale-header class=gale-header layout=row layout-align=\"start center\" ng-transclude></gale-header><div class=loading ng-if=isLoading><md-progress-linear md-mode=indeterminate></md-progress-linear></div><gale-body class=gale-body><gale-row layout=row class=gale-row ng-click=onRowClick(item) layout-align=\"start center\" ng-repeat=\"item in source track by $index\" x={{$index}}><gale-cell ng-repeat=\"formatter in $$formatters\" class=gale-cell y={{$index}}></gale-cell></gale-row></gale-body><gale-empty class=gale-empty layout=column layout-align=\"center center\"></gale-empty><gale-pagination ng-if=\"pagination && getTotalRows()>0\"><div><span>{{from() | number:0}} - {{to() | number:0}} to {{getTotalRows() | number:0}}</span></div><div><md-icon ng-click=previousPage() ng-show=hasPrevious() md-svg-icon=hardware:keyboard_arrow_left></md-icon></div><div><md-icon ng-click=nextPage() ng-show=hasNext() md-svg-icon=hardware:keyboard_arrow_right></md-icon></div></gale-pagination>");
+    "<gale-header class=gale-header layout=row layout-align=\"start center\" ng-transclude></gale-header><div class=loading ng-if=isLoading><md-progress-linear md-mode=indeterminate></md-progress-linear></div><gale-body class=gale-body><gale-row layout=row class=gale-row ng-click=onRowClick(item) layout-align=\"start center\" ng-repeat=\"item in source track by $index\" x={{$index}}><gale-cell ng-repeat=\"formatter in $$formatters\" class=gale-cell y={{$index}}></gale-cell></gale-row></gale-body><gale-pagination ng-if=\"pagination && getTotalRows()>0\"><div><span>{{from() | number:0}} - {{to() | number:0}} to {{getTotalRows() | number:0}}</span></div><div><md-icon ng-click=previousPage() ng-show=hasPrevious() md-svg-icon=hardware:keyboard_arrow_left></md-icon></div><div><md-icon ng-click=nextPage() ng-show=hasNext() md-svg-icon=hardware:keyboard_arrow_right></md-icon></div></gale-pagination>");
 }]);
 ;angular.manifiest('gale-material', [
     'gale-material.templates',
@@ -79,6 +79,7 @@ angular.module('gale-material.templates', []).run(['$templateCache', function($t
             var color = $mdThemingProvider._PALETTES[palette][500]; //Default color is 500
 
             stylesheet.insertRule(".md-" + theme + ".text { color: " + toRGB(color) + " }", 0);
+            stylesheet.insertRule(".md-" + theme + ".icon { fill: " + toRGB(color) + " }", 0);
             stylesheet.insertRule(".md-" + theme + ".background { background-color: " + toRGB(color) + " }", 0);
         }
         //------------------------------------------------------------
@@ -677,7 +678,8 @@ angular.module('gale-material.components')
         {
             itemText: '@', // Text Value Display
             ngModel: '=', // Ng-Model
-            items: '&' // Items Expression
+            items: '&', // Items Expression
+            ngChange: '&' //When Data Change
         },
         transclude: true,
         templateUrl: 'gale-select/gale-select.tpl.html',
@@ -715,6 +717,7 @@ angular.module('gale-material.components')
         },
         controller: ['$scope', '$element', '$galeCollectionDialog', '$q', function($scope, $element, $galeCollectionDialog, $q)
         {
+            var blockFirstEntry = true;
             $scope.data = {
                 placeholder: $scope.placeholder,
                 displayValue: null
@@ -754,6 +757,7 @@ angular.module('gale-material.components')
                     if (data)
                     {
                         $scope.ngModel = data;
+                        blockFirstEntry = false;
                     }
 
                     inputContainer.removeClass(focusedClass);
@@ -789,6 +793,12 @@ angular.module('gale-material.components')
                     {
                         item: $scope.ngModel
                     });
+
+                    if (!blockFirstEntry && $scope.ngChange)
+                    {
+                        //CALL ON-CHANGE BIND
+                        $scope.ngChange();
+                    }
                 }
             });
 
@@ -1372,6 +1382,7 @@ angular.module('gale-material.components')
 
                 var fetch = function()
                 {
+                    $scope.items = [];
                     var url = endpoint;
                     var data = {};
 
@@ -1423,7 +1434,6 @@ angular.module('gale-material.components')
                     },
                     refresh: function()
                     {
-                        $scope.items = [];
                         return fetch();
                     },
                     previousPage: function()

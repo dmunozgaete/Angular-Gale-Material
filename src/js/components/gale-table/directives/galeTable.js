@@ -112,6 +112,7 @@ angular.module('gale-material.components')
 
                 var fetch = function()
                 {
+                    $scope.items = [];
                     var url = endpoint;
                     var data = {};
 
@@ -163,7 +164,6 @@ angular.module('gale-material.components')
                     },
                     refresh: function()
                     {
-                        $scope.items = [];
                         return fetch();
                     },
                     previousPage: function()

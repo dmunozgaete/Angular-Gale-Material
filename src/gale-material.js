@@ -49,6 +49,7 @@ angular.manifiest('gale-material', [
             var color = $mdThemingProvider._PALETTES[palette][500]; //Default color is 500
 
             stylesheet.insertRule(".md-" + theme + ".text { color: " + toRGB(color) + " }", 0);
+            stylesheet.insertRule(".md-" + theme + ".icon { fill: " + toRGB(color) + " }", 0);
             stylesheet.insertRule(".md-" + theme + ".background { background-color: " + toRGB(color) + " }", 0);
         }
         //------------------------------------------------------------

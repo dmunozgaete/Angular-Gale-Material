@@ -6,7 +6,7 @@
  Github:            https://github.com/dmunozgaete/angular-gale-material
 
  Versión:           1.0.0-rc.7
- Build Date:        2016-03-18 14:57:14
+ Build Date:        2016-03-18 15:46:54
 ------------------------------------------------------*/
 
 angular.module('gale-material.templates', []).run(['$templateCache', function($templateCache) {

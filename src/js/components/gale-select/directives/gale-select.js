@@ -20,7 +20,8 @@ angular.module('gale-material.components')
         {
             itemText: '@', // Text Value Display
             ngModel: '=', // Ng-Model
-            items: '&' // Items Expression
+            items: '&', // Items Expression
+            ngChange: '&' //When Data Change
         },
         transclude: true,
         templateUrl: 'gale-select/gale-select.tpl.html',
@@ -58,6 +59,7 @@ angular.module('gale-material.components')
         },
         controller: function($scope, $element, $galeCollectionDialog, $q)
         {
+            var blockFirstEntry = true;
             $scope.data = {
                 placeholder: $scope.placeholder,
                 displayValue: null
@@ -97,6 +99,7 @@ angular.module('gale-material.components')
                     if (data)
                     {
                         $scope.ngModel = data;
+                        blockFirstEntry = false;
                     }
 
                     inputContainer.removeClass(focusedClass);
@@ -132,6 +135,12 @@ angular.module('gale-material.components')
                     {
                         item: $scope.ngModel
                     });
+
+                    if (!blockFirstEntry && $scope.ngChange)
+                    {
+                        //CALL ON-CHANGE BIND
+                        $scope.ngChange();
+                    }
                 }
             });
 

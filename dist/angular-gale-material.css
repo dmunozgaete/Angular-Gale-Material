@@ -6,7 +6,7 @@
  Github:            https://github.com/dmunozgaete/angular-gale-material
 
  Versión:           1.0.0-rc.7
- Build Date:        2016-03-18 15:46:54
+ Build Date:        2016-04-19 21:50:18
 ------------------------------------------------------*/
 
 

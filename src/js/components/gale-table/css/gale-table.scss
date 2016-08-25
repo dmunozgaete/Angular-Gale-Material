@@ -13,6 +13,15 @@ gale-table {
     min-height: 100%;
     width: 100%;
     font-size: 14px;
+    gale-empty-data {
+        display: none;
+        empty-data {
+            font-size: 120%;
+        }
+    }
+    gale-empty {
+        display: none;
+    }
     /*
         GALE HEADER
     */
@@ -85,11 +94,9 @@ gale-table {
                 padding: 0px 8px;
                 overflow: hidden;
                 min-height: 48px;
-
                 @include flexbox();
                 @include flex-direction(row);
                 @include align-items(center);
-                
                 &.alignLeft {
                     @include justify-content(flex-start);
                 }
@@ -99,7 +106,6 @@ gale-table {
                 &.alignCenter {
                     @include justify-content(center);
                 }
-                
                 .thumb {
                     height: 2.2em;
                     width: 2.2em;
@@ -127,13 +133,11 @@ gale-table {
         PAGINATION
     */
     > gale-pagination {
-
         @include flexbox();
         @include flex-direction(row);
         @include align-items(center);
         @include justify-content(flex-end);
         @include noselect();
-
         > div {
             opacity: 0.54;
             padding: 16px 8px;

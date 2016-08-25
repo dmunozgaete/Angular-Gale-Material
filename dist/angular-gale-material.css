@@ -5,8 +5,8 @@
  Description:       Angular Material Components for Angular Gale
  Github:            https://github.com/dmunozgaete/angular-gale-material
 
- Versión:           1.0.0-rc.7
- Build Date:        2016-04-19 21:50:18
+ Versión:           1.0.0-rc.8
+ Build Date:        2016-08-25 1:39:13
 ------------------------------------------------------*/
 
 
@@ -406,6 +406,12 @@ gale-table {
   /*
       WHEN ROW HAS CLICK HANDLER
   */ }
+  gale-table gale-empty-data {
+    display: none; }
+    gale-table gale-empty-data empty-data {
+      font-size: 120%; }
+  gale-table gale-empty {
+    display: none; }
   gale-table > gale-header {
     margin: 0;
     min-height: 100%;

@@ -1,11 +1,9 @@
 angular.module('gale-material.components')
 
-.directive('galeTable', function()
-{
+.directive('galeTable', function() {
     return {
         restrict: 'E',
-        scope:
-        {
+        scope: {
             // PAGINATION
             pagination: '=', // Paginate the items or not??
             paginationSize: '@',
@@ -20,8 +18,7 @@ angular.module('gale-material.components')
         },
         transclude: true,
         templateUrl: 'gale-table/galeTable.tpl.html',
-        controller: function($scope, $element, $Api, $galeTable, QueryableBuilder)
-        {
+        controller: function($scope, $element, $Api, $galeTable, QueryableBuilder) {
             this.$$formatters = $scope.$$formatters = []; //Lazy Load Instantation
             var self = this; //Auto reference
             var unique_id = ($scope.name || (new Date()).getTime()); //Component Unique ID
@@ -30,46 +27,38 @@ angular.module('gale-material.components')
             //------------------------------------------------------------------------------
             // EVENT IMPLEMENTATION
             var $$listeners = {};
-            self.$on = function(name, listener)
-            {
+            self.$on = function(name, listener) {
 
                 //----------------------------------------
                 //If hook, via $on change the pointer to hand
-                if (name === "row-click")
-                {
+                if (name === "row-click") {
                     $element.addClass("row-click");
                 }
                 //----------------------------------------
 
                 var namedListeners = $$listeners[name];
-                if (!namedListeners)
-                {
+                if (!namedListeners) {
                     $$listeners[name] = namedListeners = [];
                 }
                 namedListeners.push(listener);
 
                 //de-register Function
-                return function()
-                {
+                return function() {
                     namedListeners[indexOf(namedListeners, listener)] = null;
                 };
             };
 
-            self.hasEventHandlersFor = function(name)
-            {
+            self.hasEventHandlersFor = function(name) {
                 return $$listeners[name] != null;
             };
 
-            self.$fire = function(name, args)
-            {
+            self.$fire = function(name, args) {
                 var listeners = $$listeners[name];
-                if (!listeners)
-                {
+                if (!listeners) {
                     return;
                 }
 
-                angular.forEach(listeners, function(listener)
-                {
+                angular.forEach(listeners, function(listener) {
                     listener.apply(listener, args);
                 });
             };
@@ -77,47 +66,39 @@ angular.module('gale-material.components')
 
             //------------------------------------------------------------------------------
             //Retrieve the Unique Id for the gale Table
-            self.getUniqueId = function()
-            {
+            self.getUniqueId = function() {
                 return unique_id;
             };
 
             //Manual Bootstrap
-            self.setup = function(endpoint, cfg)
-            {
+            self.setup = function(endpoint, cfg) {
                 $scope.items = [];
-                
-                configuration = cfg ||
-                {}; //Save current configuration
+
+                configuration = cfg || {}; //Save current configuration
 
                 pager = self.bind(endpoint);
             };
 
             //Refresh Current Page if pager is enabled
-            self.refresh = function(endpoint, cfg)
-            {
-                if (pager)
-                {
+            self.refresh = function(endpoint, cfg) {
+                if (pager) {
                     pager.refresh();
                 }
             };
 
             //Bind to Endpoint
-            self.bind = function(endpoint)
-            {
+            self.bind = function(endpoint) {
                 //Pagination Variables
                 var totalRows = 0;
                 var offset = 0;
                 var limit = parseInt(($scope.paginationSize || 10));
 
-                var fetch = function()
-                {
+                var fetch = function() {
                     $scope.items = [];
                     var url = endpoint;
                     var data = {};
 
-                    if ($scope.pagination)
-                    {
+                    if ($scope.pagination) {
                         //ODATA Conventions
                         data = {
                             "$offset": offset,
@@ -131,8 +112,7 @@ angular.module('gale-material.components')
                     var request = $Api.invoke('GET', url, data, configuration.headers);
 
                     request
-                        .success(function(data)
-                        {
+                        .success(function(data) {
                             //UPDATE OFFSET COUNTER
                             totalRows = data.total;
                             $scope.items = data.items;
@@ -140,8 +120,7 @@ angular.module('gale-material.components')
                             self.render(data, true);
                             self.$fire("load-complete", [data, unique_id]);
                         })
-                        .finally(function()
-                        {
+                        .finally(function() {
                             $scope.isLoading = false;
                         });
 
@@ -157,38 +136,30 @@ angular.module('gale-material.components')
                 //------------------------------------------------------
 
                 return {
-                    nextPage: function()
-                    {
+                    nextPage: function() {
                         offset += limit;
                         return fetch();
                     },
-                    refresh: function()
-                    {
+                    refresh: function() {
                         return fetch();
                     },
-                    previousPage: function()
-                    {
+                    previousPage: function() {
                         offset -= limit;
                         return fetch();
                     },
-                    hasPrevious: function()
-                    {
+                    hasPrevious: function() {
                         return offset > 0;
                     },
-                    hasNext: function()
-                    {
+                    hasNext: function() {
                         return totalRows > 0 && (offset + limit) < totalRows;
                     },
-                    totalRows: function()
-                    {
+                    totalRows: function() {
                         return totalRows;
                     },
-                    offset: function()
-                    {
+                    offset: function() {
                         return offset;
                     },
-                    limit: function()
-                    {
+                    limit: function() {
                         return limit;
                     }
 
@@ -197,43 +168,36 @@ angular.module('gale-material.components')
             };
 
             //Render table
-            self.render = function(data, isRest)
-            {
+            self.render = function(data, isRest) {
                 self.$fire("before-render", [data, unique_id]);
 
 
                 $scope.source = isRest ? data.items : data;
-                if (isRest)
-                {
+                if (isRest) {
                     data.total = data.items.length;
+
+                    var displayClass = ($scope.source.length === 0) ? "block" : "none";
+                    //Put the empty-data placeholder into the gale-empty directive
+                    $element.find("gale-empty").css("display", displayClass);
+                    $element.find("gale-empty-data").css("display", displayClass);
                 }
 
-                if ($scope.source.length === 0)
-                {
-                    //Put the empty-data placeholder into the gale-empty directive
-                    $element.find("gale-empty").css("display", "block").append(
-                        $element.find("gale-empty-data").css("display", "block")
-                    );
-                }
             };
 
             //------------------------------------------------------------------------------
             //Cell Click
             var cellClickHandler = $scope.cellClick();
-            self.$$cellClick = function(ev, item, cellIndex, rowIndex)
-            {
+            self.$$cellClick = function(ev, item, cellIndex, rowIndex) {
 
                 //Scale to Row Click
-                self.$fire("cell-click", [ev, item,
-                {
+                self.$fire("cell-click", [ev, item, {
                     x: rowIndex,
                     y: cellIndex
                 }, self.getUniqueId()]);
             };
 
             //Garbage Collector Destroy
-            $scope.$on('$destroy', function()
-            {
+            $scope.$on('$destroy', function() {
                 self.endpoint = null;
                 $scope.source = null;
 
@@ -244,43 +208,33 @@ angular.module('gale-material.components')
             //------------------------------------------------------------------------------
             // Pagination
             var pager = null;
-            $scope.getTotalRows = function()
-            {
+            $scope.getTotalRows = function() {
                 return pager.totalRows();
             };
-            $scope.nextPage = function()
-            {
+            $scope.nextPage = function() {
                 pager.nextPage();
             };
-            $scope.previousPage = function()
-            {
+            $scope.previousPage = function() {
                 pager.previousPage();
             };
-            $scope.from = function()
-            {
+            $scope.from = function() {
                 return (pager.offset()) + 1;
             };
-            $scope.to = function()
-            {
+            $scope.to = function() {
                 var value = (pager.offset() + pager.limit());
-                if (value > pager.totalRows())
-                {
+                if (value > pager.totalRows()) {
                     return pager.totalRows();
                 }
                 return value;
             };
-            $scope.hasNext = function()
-            {
-                if (!pager)
-                {
+            $scope.hasNext = function() {
+                if (!pager) {
                     return false;
                 }
                 return pager.hasNext();
             };
-            $scope.hasPrevious = function()
-            {
-                if (!pager)
-                {
+            $scope.hasPrevious = function() {
+                if (!pager) {
                     return false;
                 }
                 return pager.hasPrevious();
@@ -291,13 +245,11 @@ angular.module('gale-material.components')
             $galeTable.$$register(self, unique_id);
         },
 
-        link: function(scope, element, attrs, ctrl)
-        {
+        link: function(scope, element, attrs, ctrl) {
 
             var rowClickHandler = scope.rowClick();
 
-            if (scope.showHeader && !scope.$eval(scope.showHeader))
-            {
+            if (scope.showHeader && !scope.$eval(scope.showHeader)) {
                 element.find("gale-header").css("display", "none");
             }
 
@@ -306,39 +258,37 @@ angular.module('gale-material.components')
             element.addClass("gale-table");
 
             //Watch for Changes
-            scope.$watch('endpoint', function(value)
-            {
-                if (value)
-                {
+            scope.$watch('endpoint', function(value) {
+                if (value) {
                     ctrl.bind(value);
                 }
             });
 
             //Watch for Changes
-            scope.$watch('items', function(value)
-            {
-                if (value)
-                {
+            scope.$watch('items', function(value) {
+                if (value) {
                     ctrl.render(value, false);
                 }
             });
 
             //Add cursor if handler exists
-            if (rowClickHandler || ctrl.hasEventHandlersFor("row-click"))
-            {
+            if (rowClickHandler || ctrl.hasEventHandlersFor("row-click")) {
                 element.addClass("row-click");
             }
 
             element.find("gale-empty").css("display", "none");
             element.find("gale-empty-data").css("display", "none");
 
-            scope.onRowClick = function(item)
-            {
+            //Put the empty-data placeholder into the gale-empty directive
+            element.find("gale-empty").append(
+                element.find("gale-empty-data")
+            );
+
+            scope.onRowClick = function(item) {
 
                 //Row Click
                 ctrl.$fire("row-click", [event, item, ctrl.getUniqueId()]);
-                if (rowClickHandler)
-                {
+                if (rowClickHandler) {
                     rowClickHandler(item);
                 }
 

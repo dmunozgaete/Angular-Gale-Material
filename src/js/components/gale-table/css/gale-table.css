@@ -25,6 +25,12 @@ gale-table {
   /*
       WHEN ROW HAS CLICK HANDLER
   */ }
+  gale-table gale-empty-data {
+    display: none; }
+    gale-table gale-empty-data empty-data {
+      font-size: 120%; }
+  gale-table gale-empty {
+    display: none; }
   gale-table > gale-header {
     margin: 0;
     min-height: 100%;
